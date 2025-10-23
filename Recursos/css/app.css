@@ -1,0 +1,80 @@
+
+header#header {
+            background-color: #1964ab;
+
+            nav {
+                a.navbar-brand {
+                    font-size: 1.8rem;
+                    font-family: "Roboto Slab";
+                    font-weight: 800;
+                    color: #4c535b;
+
+                    span {
+
+                        color: #5d92c4;
+
+                    }
+
+                  
+                }
+                .navbar-nav {
+
+                    margin-left:75px;
+                    font-family: 'Lucida Sans';                }
+
+                .collapse {
+                    a {
+                        font-size: 1rem;
+                        color: #4c535b;
+
+                        &:hover {
+                            color: #5d92c4;
+
+                        }
+                    }
+
+                }
+
+                button.navbar-toggler {
+                    color: #5d92c4;
+                    border: 1px solid #5d92c4;
+
+
+
+                }
+
+            }
+}
+main {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+div.compras {
+    position: absolute;
+    z-index: 99;
+    top: 10px;
+    right: 10px;
+    max-width: 600px;
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+div.carritoCompras:hover div.compras {
+    display: block;
+}
+
+div.card {
+    min-height: 600px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px;
+}
+
+div.card img {
+    height: 300px;
+    object-fit: cover;
+}
