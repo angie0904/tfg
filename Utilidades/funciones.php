@@ -42,8 +42,8 @@
 function iniciarSesion()
 {
 
-    require_once("../Modelo/class.db.php");
-    require_once("../Modelo/usuarios.php");
+    require_once("./Modelo/class.db.php");
+    require_once("./Modelo/usuarios.php");
 
     $modelo = new db();
 
@@ -94,7 +94,7 @@ function iniciarSesion()
 
     } else {
         echo ("usuario no logueado");
-        require_once("../Vista/login.php");
+        require_once("./Vista/login.php");
     }
 
 
@@ -257,13 +257,13 @@ function listaResul()
 // }
 
 // function compRuta(String $origen, String $nomFile){
-//     if(!file_exists('../recursos/img/')){
-//         mkdir('../recursos/img/');
+//     if(!file_exists('./Recursos/img/')){
+//         mkdir('./Recursos/img/');
 //     }
 
-//     move_uploaded_file($origen,'../recursos/img/'.$nomFile);
+//     move_uploaded_file($origen,'./Recursos/img/'.$nomFile);
 
-//     return '../recursos/img/'.$nomFile;
+//     return './Recursos/img/'.$nomFile;
 // }
 // function borrarInmueble(){
 //     require_once('../Modelo/class.inmuebles.php');

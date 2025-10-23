@@ -9,7 +9,7 @@
 
     <!-- Imagen a la izquierda -->
     <div class="w-1/2 h-screen">
-        <img src="../recursos/img/login.jpg" alt="Login" class="w-full h-full object-cover bg-purple-50">
+        <img src="./Recursos/img/login.jpg" alt="Login" class="w-full h-full object-cover bg-purple-50">
        
     </div>
 

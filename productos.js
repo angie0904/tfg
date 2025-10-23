@@ -10,7 +10,7 @@ const productos = [
     nombre: "Microbioma Intestinal Clínico",
     descripcion: "La prueba del Microbioma Intestinal proporciona información única sobre la salud de su microbiota intestinal.",
     precio: "390,00€",
-    imagen: "../recursos/img/T-microb.png"
+    imagen: "./Recursos/img/T-microb.png"
   },
   {
     nombre: "Bono Intolerancia Alimentaria 200",
