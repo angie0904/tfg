@@ -2,7 +2,7 @@
     <?php
         if(isset($_POST["modificar"])){
             echo "<h1>Modificar Usuario</h1>";
-            echo "<form action='../Controlador/index.php?action=modificarUsuario' method='post'>";
+            echo "<form action='./Utilidades/funciones.php?action=modificarUsuario' method='post'>";
                 echo "<table border='1'>";
                     echo "<tr>";
                         echo "<td>";
@@ -20,7 +20,7 @@
             echo "</form>";
         }else{
     ?>
-    <form action="../Controlador/index.php?action=insertarUsuario" method="post">
+    <form action="./Utilidades/funciones.php?action=insertarUsuario" method="post">
         <h1>Insertar Usuario</h1>
 
         <div>

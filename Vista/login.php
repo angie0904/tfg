@@ -15,7 +15,7 @@
 
     <!-- Formulario a la derecha -->
     <div class="w-1/2 h-screen flex items-center justify-center bg-gray-100">
-        <form action="../Controlador/index.php?action=iniciarSesion" method="post" class="w-full max-w-md bg-white p-8 rounded shadow-lg space-y-6">
+        <form action="?action=iniciarSesion" method="post" class="w-full max-w-md bg-white p-8 rounded shadow-lg space-y-6">
 
             <h1 class="text-2xl font-bold text-center">Inicia Sesión</h1>
 
