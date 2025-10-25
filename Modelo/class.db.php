@@ -1,5 +1,5 @@
 <?php
-    require_once("./Utilidades/cred.php");
+    require_once(__DIR__."../../Utilidades/cred.php");
 
     class db{
         private $conn;

@@ -100,22 +100,64 @@ function iniciarSesion()
 
 function listaResul()
 {
-    echo "estoy en listaResul";
-    //require_once('./Vista/Inicio.html');
-    /*echo "estoy en listaResul";
-    require_once('./Modelo/class.paciente.php');
-    $resul = new resultados();
-    $resul = $resul->getResultados();
-    require_once('./Vista/principal/header.html');
-    require_once('./Vista/resultados.php');*/
+    $modelPath = __DIR__ . '/../Modelo/class.paciente.php';
+    require_once $modelPath;
+    
+    $result = new paciente();
+    if($arrayResultados = $result->getResultados()){
+        
+        require_once(__DIR__.'/../Vista/resultados.php');
+        require_once(__DIR__.'/../Vista/principal/header.html');
+        
+    // require_once('./Vista/resultados.php');
+    } else {
+        echo "No se encontraron resultados.";
+    }
 }
 
+function solicitarPrueba()
+{
+   
+    
+
+    // require_once(__DIR__.'/../Vista/paciente/formularioprueba.html');
+    require_once(__DIR__.'/../Vista/resultados.php');
+    /*$modelPath = __DIR__ . '/../Modelo/class.paciente.php';
+    require_once $modelPath;
+    $result = new paciente();
+    if($arrayResultados = $result->getResultados()){
+        require_once(__DIR__.'/../Vista/resultados.php');
+        require_once(__DIR__.'/../Vista/principal/header.html');
+        
+    // require_once('./Vista/resultados.php');
+    } else {
+        echo "No se encontraron resultados.";
+    }*/
+
+}
+
+function buscarPaciente()
+{
+    $modelPath = __DIR__ . '/../Modelo/class.medico.php';
+    require_once $modelPath;
+    
+    $resul = new medico();
+    if($arrayResultados = $resul->getPacienteByNHC($nhc)){
+        
+        require_once(__DIR__.'/../Vista/medico/busqueda.php');
+        require_once(__DIR__.'/../Vista/principal/header.html');
+        
+    // require_once('./Vista/resultados.php');
+    } else {
+        echo "No se encontraron resultados.";
+    }
+}
 
 
 
 // Funciones de los usuarios, para mostrarle el formulario y para obtener la respuesta e insertar el usuario
 // Con esta función se listan los usuarios del sistema (Administrador)
-function listarUsuarios($msg = "")
+/*function listarUsuarios($msg = "")
 {
     // No compruebo la sesión porque solo el administrador puede acceder a esta función
     // require_once("../Modelo/usuarios.php");
@@ -187,6 +229,6 @@ function formPaciente()
 
 
 }
-
+*/
 
 ?>

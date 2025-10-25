@@ -2,6 +2,8 @@
 session_start();
 
 // Verificamos que esté logueado
+include(__DIR__.'/../../Utilidades/funciones.php');
+// Verificamos que esté logueado
  if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
     exit;
@@ -9,7 +11,12 @@ session_start();
 
 require_once(__DIR__.'/../../Vista/principal/head.html');
 require_once(__DIR__.'/../../Vista/principal/header.html');
-echo "Bienvenido, " . $_SESSION['nom'];
-require_once(__DIR__.'/../../Vista/paciente/paciente.html');
+// echo "Bienvenido, " . $_SESSION['nom'];
+require_once(__DIR__.'/../../Vista/medico/medico.php');
 
+if (isset($_REQUEST['action'])) {
+    $action = strtolower($_REQUEST['action']);
+
+    $action();
+} 
 ?>
