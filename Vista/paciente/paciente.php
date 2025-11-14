@@ -10,7 +10,8 @@ if ($action === 'listaResul') {
     if (file_exists($modelPath)) {
         require_once $modelPath;
         $model = new paciente();
-        $arrayResultados = $model->getResultados();
+        $login = $_SESSION['id_usuario'] ?? '';
+        $arrayResultados = $model->getResultados($login);
     } else {
         $errorModel = "Modelo no encontrado: $modelPath";
     }
@@ -45,17 +46,16 @@ if ($action === 'listaResul') {
         if ($action === 'listaResul') {
             // La vista resultados.php espera $arrayResultados
             if (isset($arrayResultados)) {
-                require __DIR__ . '/../resultados.php';
+                require __DIR__ . '/resultados.php';
             } else {
                 echo "<p>No se han encontrado resultados.</p>";
             }
         } elseif ($action === 'solicitarPrueba') {
-            require __DIR__ . '/formularioprueba.html';
+            require __DIR__ . '/formularioprueba.php';
         } elseif ($action === 'otro') {
             echo "<p>Contenido de la acción 'otro'.</p>";
         } else {
-            // Contenido por defecto
-            echo "<p>Bienvenido al panel. Usa el menú izquierdo para navegar.</p>";
+            require __DIR__ . '/resultados.php';
         }
         ?>
       </section>

@@ -12,7 +12,7 @@
 
         // Obtenemos el id_usuario del usuario con su nombre
         public function getId($nomUsu){
-            $consulta = "SELECT id_usuario, tipo_usuario FROM usuarios WHERE nombre = ?";
+            $consulta = "SELECT login, tipo FROM usuarios WHERE login = ?";
             $sentencia = $this->conn->prepare($consulta);
             $sentencia->bind_param("s", $nomUsu);
             $sentencia->bind_result($id_usuario, $type);
@@ -32,7 +32,7 @@
 
         // Listamos todos los usuarios del sistema
         public function listarUsuarios(){
-            $consulta = "SELECT id_usuario, nombre, psw FROM usuarios Where tipo_usuario = 'Paciente'";
+            $consulta = "SELECT login, login, password FROM usuarios Where tipo = 'Paciente'";
             $sentencia = $this->conn->prepare($consulta);
             $sentencia->bind_result($idUsu, $nomUsu, $psw);
             $info = array();
@@ -45,10 +45,10 @@
         }
 
         // Insertamos un usuario en la base de datos
-        public function insertarUsuario($nom, $psw){
-            $consulta = "INSERT INTO usuarios (nombre, psw, tipo_usuario) VALUES (?,?,'Paciente')";
+        public function crearUsuario($login, $password){
+            $consulta = "INSERT INTO usuarios (login, password, tipo,activo) VALUES (?,?,'Paciente',1)";
             $sentencia = $this->conn->prepare($consulta);
-            $sentencia->bind_param("ss", $nom, $psw);
+            $sentencia->bind_param("ss", $login, $password);
             $sentencia->execute();
             $bool = false;
             if($sentencia->affected_rows == 1){
@@ -56,6 +56,8 @@
             };
             $sentencia->close();
             return $bool;
+
+            
         }
 
         // Seleccionamos un usuario en concreto para poder modificarlo

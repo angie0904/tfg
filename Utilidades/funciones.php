@@ -76,6 +76,7 @@ function iniciarSesion()
                 $_SESSION["tipo_usuario"] = false;
                 
                 //require_once("./Vista/principal/header.html");
+                
                 header("Location: ./Controlador/paciente/index.php");
             } else {
                 //hacer vista y ventana para el modo medico
@@ -84,9 +85,17 @@ function iniciarSesion()
                 header("Location: ./Controlador/medico/index.php");
             }
             $_SESSION["id_usuario"] = $idTipo[0][0];
+        }
+        elseif($modelo->pswIncorrecta($_POST["nom"], !$_POST["psw"])){
+            $err = "";
+            require_once("./Vista/login.php");
+            
+
         } else {
-            echo ("el paciente no existe, tengo que enviarle la ventana para crear el usuario");
-            require_once("./Vista/insertarmodificarPaciente.php");
+            $err = "";
+ 
+            require_once(__DIR__.'/../Vista/principal/header.html');
+            require_once("./Vista/crearUsuario.php");
         }
 
     } else {
@@ -105,8 +114,10 @@ function listaResul()
     
     $result = new paciente();
     if($arrayResultados = $result->getResultados()){
+        require_once(__DIR__.'/../Vista/principal/head.html');
         
-        require_once(__DIR__.'/../Vista/resultados.php');
+        require_once(__DIR__.'../Vista/paciente/resultados.php');
+        
         require_once(__DIR__.'/../Vista/principal/header.html');
         
     // require_once('./Vista/resultados.php');
@@ -121,7 +132,7 @@ function solicitarPrueba()
     
 
     // require_once(__DIR__.'/../Vista/paciente/formularioprueba.html');
-    require_once(__DIR__.'/../Vista/resultados.php');
+    require_once(__DIR__.'/../Vista/paciente/resultados.php');
     /*$modelPath = __DIR__ . '/../Modelo/class.paciente.php';
     require_once $modelPath;
     $result = new paciente();
@@ -151,6 +162,73 @@ function buscarPaciente()
     } else {
         echo "No se encontraron resultados.";
     }
+}
+function EstudiosPedientes()
+{
+    $modelPath = __DIR__ . '/../Modelo/class.medico.php';
+    require_once $modelPath;
+    
+    $resul = new medico();
+    if($arrayResultados = $resul->getPacienteByNHC($nhc)){
+        
+        require_once(__DIR__.'/../Vista/medico/estudiosPendientes.php');
+        require_once(__DIR__.'/../Vista/principal/header.html');
+        
+    // require_once('./Vista/resultados.php');
+    } else {
+        echo "No se encontraron resultados.";
+    }
+}
+
+function crearUsuario(){
+ $modelPath = __DIR__ . '/../Modelo/usuarios.php';
+ $modelPath2 = __DIR__ . '/../Modelo/class.paciente.php';
+    require_once $modelPath;
+    require_once $modelPath2;
+    $resul = new usuarios();
+    $resul2 = new paciente();
+    if($resul->CrearUsuario($_POST["login"],$_POST["password"])){
+        if ($resul2->CrearPaciente( $_POST["nombre"],
+        $_POST["apellidos"],
+        $_POST["fechaNacimiento"], 
+        $_POST["edad"],
+        $_POST["sexo"],
+        $_POST["telefono"],
+        $_POST["login"])) {
+                    
+            require_once(__DIR__.'/../Vista/login.php');
+            require_once(__DIR__.'/../Vista/principal/header.html');
+        } else {
+            echo "<p style='color:red'>Error al insertar paciente</p>";
+        }
+    // require_once('./Vista/resultados.php');
+    } else {
+        echo "Error al insertar el usuario";
+    }
+    
+    
+}
+
+function insertarPrueba()
+{
+    $modelPath = __DIR__ . '/../Modelo/class.paciente.php';
+    require_once $modelPath;
+    $resul = new paciente();
+    $login = $_SESSION['id_usuario'];
+
+    $cod_prueba = $resul->buscarPrueba($_POST["prueba"]);
+    $NHC = $resul->buscarPaciente($login);
+    if ($cod_prueba && $NHC) {
+        // La prueba existe, insertamos en estudios
+        if ($resul->insertarPrueba($cod_prueba, $NHC)) {
+            $msg = "<p style='color:green'>Usuario insertado correctamente</p>";
+        } else {
+            echo "Error al insertar la prueba.";
+        }
+    } else {
+        echo "Error al insertar la prueba.";
+    }
+
 }
 
 

@@ -42,13 +42,40 @@
                 Iniciar Sesión
             </button>
 
-            <!-- Mostrar errores si existen -->
-            <?php if (isset($err)) : ?>
+           <?php if (isset($err)) : ?>
                 <p class="text-red-500 text-sm text-center"><?php echo $err; ?></p>
             <?php endif; ?>
 
         </form>
     </div>
 
-</body>
-</html>
+    <!-- Modal de error centralizado -->
+    <?php if (isset($err)): ?>
+    <div id="errorModal" class="fixed inset-0 z-50 flex items-center justify-center">
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <div class="relative bg-white rounded-lg shadow-lg w-11/12 max-w-md p-6 mx-4 text-center">
+        <h3 class="text-xl font-semibold text-red-600 mb-2">Error</h3>
+        <p class="mb-4">Contraseña Incorrecta<br>Vuelve a intentarlo</p>
+        
+        <div class="flex justify-center">
+          <button id="closeModal" class="px-4 py-2 bg-blue-600 text-white rounded">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        const modal = document.getElementById('errorModal');
+        const btn = document.getElementById('closeModal');
+        btn.addEventListener('click', () => modal.remove());
+        // cerrar con ESC
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') modal.remove(); });
+      })();
+    </script>
+    <?php endif; ?>
+
+        
+    </div>
+
+
+

@@ -107,10 +107,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fini'])) {
         <h3 class="text-2xl  text-center">Buscar paciente por NHC</h3>
 
         <div>
-            <label for="nhc" class="block text-gray-700 font-medium mb-1">Número de historia clínica (NHC)</label>
-            <input id="nhc" name="nom" type="text"
+            <input id="nhc" name="nom" type="text" placeholder="Numero de historia clínica (NHC)"
                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
                    value="<?php echo htmlspecialchars($nhcSearched); ?>">
+
         </div>
 
         <button type="submit" name="fini"
@@ -121,9 +121,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fini'])) {
         <?php echo $msg; ?>
     </form>
 </div>
-    <table>
+    <table class="min-w-full table-fixed border-collapse mb-6">
         <thead>
-                <tr class="text-left">
+                <tr class="text-center">
                     <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Prueba</th>
                     <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Resultados</th>
                     <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Valores</th>
@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fini'])) {
                 </tr>
             </thead>
             <?php foreach($pac as $key => $value):?>
-                <tr class="even:bg-gray-50">
+                <tr class="min-w-full table-fixed border-collapse mb-6">
                         <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[5] ?? ''); ?></td>
                         <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[6] ?? ''); ?></td>
                         <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[7] ?? ''); ?></td>

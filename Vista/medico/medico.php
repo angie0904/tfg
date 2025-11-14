@@ -50,12 +50,11 @@ if ($action === 'buscarPaciente') {
                 echo "<p>No se han encontrado resultados.</p>";
             }
         } elseif ($action === 'solicitarPrueba') {
-            require __DIR__ . '/formularioprueba.html';
+            require __DIR__ . '/estudiosPedientes.php';
         } elseif ($action === 'otro') {
             echo "<p>Contenido de la acción 'otro'.</p>";
         } else {
-            // Contenido por defecto
-            echo "<p>Bienvenido al panel. Usa el menú izquierdo para navegar.</p>";
+            require __DIR__ . '/busqueda.php';
         }
         ?>
       </section>
