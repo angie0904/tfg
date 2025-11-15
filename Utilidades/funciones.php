@@ -70,7 +70,7 @@ function iniciarSesion()
             if ($idTipo[0][1] == "Administrador") {
                 $_SESSION["tipo_usuario"] = true;
                 //hacer vista y ventanada para el modo administrador
-                echo ("usuario administrador");
+                header("Location: ./Controlador/administrador/index.php");
                 //TODO hacer vista administrador---------------------------------------------------------
             } elseif ($idTipo[0][1] == "Paciente") {
                 $_SESSION["tipo_usuario"] = false;
@@ -248,6 +248,59 @@ function validarInfo()
      require_once(__DIR__.'/../Vista/principal/header.html');
     require_once(__DIR__.'/../Vista/login.php');
 }
+
+//Admin
+
+function bajas()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/administrador/bajas.php');
+}
+
+function altaPacientes()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/administrador/altasPacientes.php');
+}
+
+function altaMedicos()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/administrador/altasMedicos.php');
+}
+
+function crearPruebas()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/administrador/crearPruebas.php');
+}
+
+function crearModalidades()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/administrador/crearMOdalidades.php');
+}
+
+function desvalidarInformes()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/administrador/desvalidarInformes.php');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Funciones de los usuarios, para mostrarle el formulario y para obtener la respuesta e insertar el usuario
 // Con esta función se listan los usuarios del sistema (Administrador)

@@ -22,9 +22,14 @@ if ($action === 'listaResul') {
     
 
     <nav class="space-y-2">
-      <a href="?action=listaResul" class="block px-3 py-2 rounded-md  hover:bg-blue-100 text-black text-decoration-none">Ver resultados</a>
-      <a href="?action=solicitarPrueba" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none">Solicitar prueba</a>
-      <a href="?action=otro" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100  text-black text-decoration-none">Otro</a>
+      <a href="index.php?action=bajas" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none">Bajas</a>
+            <a href="?action=altasPacientes" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none">Altas Pacientes</a>
+      <a href="?action=altasMedicos" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none">Altas Medicos</a>
+
+      <a href="?action=crearPruebas" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none">Crear Nuevas Pruebas</a>
+      <a href="?action=crearModalidades" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100  text-black text-decoration-none">Crear Nuevas Modalidades</a>
+            <a href="?action=desvalidarInformes" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100  text-black text-decoration-none">Desvalidar Informes</a>
+
     </nav>
   </aside>
 
@@ -42,20 +47,23 @@ if ($action === 'listaResul') {
         
 
         // Cargar vistas según la acción
-        if ($action === 'listaResul') {
-            // La vista resultados.php espera $arrayResultados
-            if (isset($arrayResultados)) {
-                require __DIR__ . '/../resultados.php';
-            } else {
-                echo "<p>No se han encontrado resultados.</p>";
-            }
-        } elseif ($action === 'solicitarPrueba') {
-            require __DIR__ . '/formularioprueba.html';
-        } elseif ($action === 'otro') {
-            echo "<p>Contenido de la acción 'otro'.</p>";
-        } else {
+        if ($action === 'bajas') {
+    bajas();
+  }elseif ($action === 'altasPacientes') {
+    altaPacientes();
+  }
+ elseif ($action === 'altasMedicos') {
+            altaMedicos();
+        }  elseif ($action === 'crearPruebas') {
+            crearPruebas();
+        }
+        elseif ($action === 'crearModalidades') {
+            crearModalidades();
+        }elseif ($action === 'desvalidarInformes') {
+            desvalidarInformes();
+        }else {
             // Contenido por defecto
-            echo "<p>Bienvenido al panel. Usa el menú izquierdo para navegar.</p>";
+            bajas();
         }
         ?>
       </section>

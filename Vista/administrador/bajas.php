@@ -85,7 +85,7 @@ $msg = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fini'])) {
     $nhcSearched = trim($_POST['nom'] ?? '');
     if ($nhcSearched === '') {
-        $msg = '<div class="mt-4 text-red-600">Introduce un NHC válido.</div>';
+        $msg = '<div class="mt-4 text-red-600">Busca el login que quieres dar de baja.</div>';
     } else {
         $modelPath = __DIR__ . '/../../Modelo/class.medico.php';
         if (file_exists($modelPath)) {
@@ -102,61 +102,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fini'])) {
 }
 ?>
 
+<div class="flex items-center justify-center mb-6">
+    <form action="?action=buscarPaciente" method="post" class="w-full max-w-md bg-white p-6 rounded shadow space-y-4">
+        <h3 class="text-2xl  text-center">Busca el usuario a dar de baja.</h3>
 
-    <div class="">
-            <?php
-            
-               
-
-             
-
-                // Tabla de resultados detallada
-                echo "<table border='1' style='width:100%;border-collapse:collapse;'>";
-                echo "<tr><th style='padding:8px;text-align:left;'>Prueba</th><th style='padding:8px;text-align:left;'>Resultados</th><th style='padding:8px;text-align:left;'>Valores normales</th></tr>";
-
-                    
-                    $cod_prueba = htmlspecialchars($value[1] ?? '');
-                    $resul = htmlspecialchars($value[1] ?? '');
-                    $valores = htmlspecialchars($value[2] ?? '');
-                    echo "<tr>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$2</td>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>hola</td>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$400</td>";
-                    
-                    echo "</tr>";
-                    
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$1</td>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>jj</td>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$300</td>";
-                    echo "</tr>";
-
-
-                echo "</table>";
-     
-
-            if (isset($msg)) echo $msg;
-            ?>
-            
-<div class="max-w-4xl mx-auto p-6">
-    <form method="post" action="index.php?action=guardarInfo">
-          <div>
-            <textarea id="descripcion" name="descripcion" rows="3" required
-                      class="w-full border border-gray-300 rounded-lg px-4 py-2 
-                             focus:outline-none focus:ring-2 focus:ring-blue-300 
-                             focus:border-blue-400 transition"></textarea>
+        <div>
+            <input id="nhc" name="nom" type="text" placeholder="Usuario"
+                   class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
+                   value="<?php echo htmlspecialchars($nhcSearched); ?>">
 
         </div>
-        <div class="flex gap-4">
-            <button href='index.php?action=guardarInfo' type="submit" name="guardar" value="1" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded">
-                Guardar
-            </button>
 
-            <button href='index.php?action=validarInfo' type="submit" name="validar" value="1" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded">
-                Validar
-            </button>
-        </div>
+        <button type="submit" name="fini"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition duration-200">
+            Buscar
+        </button>
+
+        <?php echo $msg; ?>
     </form>
 </div>
-        </div>
+    <table class="min-w-full table-fixed border-collapse mb-6">
+        <thead>
+                <tr class="text-center">
+                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Prueba</th>
+                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Resultados</th>
+                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Valores</th>
+                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Descripcion</th>
+                </tr>
+            </thead>
+            <?php foreach($pac as $key => $value):?>
+                <tr class="min-w-full table-fixed border-collapse mb-6">
+                        <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[5] ?? ''); ?></td>
+                        <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[6] ?? ''); ?></td>
+                        <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[7] ?? ''); ?></td>
+                        <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[8] ?? ''); ?></td>
+                    </tr>
+            <?php endforeach; ?>
+                
+    </table>
 
 
