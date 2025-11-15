@@ -38,9 +38,8 @@ if ($action === 'buscarPaciente') {
       </div>
 
       <section id="contenido-principal" class="bg-white rounded-lg p-6 shadow">
-        <?php
-        
-
+       <?php
+// ...existing code...
         // Cargar vistas según la acción
         if ($action === 'buscarPaciente') {
             // La vista resultados.php espera $arrayResultados
@@ -51,11 +50,18 @@ if ($action === 'buscarPaciente') {
             }
         } elseif ($action === 'solicitarPrueba') {
             require __DIR__ . '/estudiosPedientes.php';
+        } elseif ($action === 'informe') {
+            // incluir la vista informe como página independiente dentro del contenedor
+            require __DIR__ . '/informe.php';
+        } elseif ($action === 'guardar') {
+            // incluir la vista informe como página independiente dentro del contenedor
+            require __DIR__ . '../login.php';
         } elseif ($action === 'otro') {
             echo "<p>Contenido de la acción 'otro'.</p>";
         } else {
             require __DIR__ . '/busqueda.php';
         }
+// ...existing code...
         ?>
       </section>
     </div>

@@ -231,7 +231,23 @@ function insertarPrueba()
 
 }
 
+function informe()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/medico/informe.php');
+}
 
+function guardarInfo()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/login.php');
+}
+
+function validarInfo()
+{
+     require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/login.php');
+}
 
 // Funciones de los usuarios, para mostrarle el formulario y para obtener la respuesta e insertar el usuario
 // Con esta función se listan los usuarios del sistema (Administrador)

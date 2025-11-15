@@ -1,6 +1,6 @@
 
 <main>
-    <form action="index.php?action=listaResul" method="post">
+    <form action="" method="post">
         <div class="">
             <?php
             
@@ -17,9 +17,16 @@
                     $resul = htmlspecialchars($value[1] ?? '');
                     $valores = htmlspecialchars($value[2] ?? '');
                     echo "<tr>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$cod_prueba</td>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$resul</td>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$valores</td>";
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$2</td>";
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>hola</td>";
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$400</td>";
+                    
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'><a href='index.php?action=informe' class='bg-blue-500 text-white px-3 py-1 rounded text-sm'>Informar</a></td> </form>";
+                    echo "</tr>";
+                    
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$1</td>";
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>jj</td>";
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$300</td>";
                     echo "</tr>";
 
 
@@ -28,6 +35,8 @@
 
             if (isset($msg)) echo $msg;
             ?>
+            
+
         </div>
     </form>
 </main>
