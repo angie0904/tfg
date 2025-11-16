@@ -31,24 +31,6 @@ $msg = $msg ?? '';
                              focus:outline-none focus:ring-2 focus:ring-blue-300 
                              focus:border-blue-400 transition"></textarea>
         </div>
-
-        <!-- Modalidad -->
-        <div>
-            <label class="block text-gray-700 font-medium mb-1" for="modalidad">
-                Modalidad
-            </label>
-            <select id="modalidad" name="modalidad" required
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2
-                           focus:outline-none focus:ring-2 focus:ring-blue-300 
-                           focus:border-blue-400 transition">
-                <option value="">Seleccione una modalidad</option>
-                <option value="Analítica">Analítica</option>
-                <option value="Radiología">Radiología</option>
-                <option value="Diagnóstico">Diagnóstico</option>
-                <option value="Especial">Especial</option>
-            </select>
-        </div>
-
         <!-- Botón -->
         <button type="submit" action="index.php?action=crearPruebas" name="crear"
                 class="w-full bg-blue-500 hover:bg-blue-600 text-white 

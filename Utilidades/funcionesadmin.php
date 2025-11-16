@@ -25,7 +25,7 @@ function crearPruebas()
         $modalidad = trim($_POST['modalidad'] ?? '');
         
         // Validar que no estén vacíos
-        if (empty($codigo) || empty($descripcion) || empty($modalidad)) {
+        if (empty($codigo) || empty($descripcion) ) {
             $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Por favor rellena todos los campos.</div>';
         } else {
             $modelPath = __DIR__ . '/../Modelo/class.admin.php';
@@ -33,7 +33,7 @@ function crearPruebas()
                 require_once $modelPath;
                 $model = new admin();
                 
-                if ($model->crearPrueba($codigo, $descripcion, $modalidad)) {
+                if ($model->crearPrueba($codigo, $descripcion)) {
                     $msg = '<div class="mt-4 p-4 bg-green-100 text-green-700 rounded">Prueba creada correctamente.</div>';
                 } else {
                     $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Error al crear la prueba.</div>';
@@ -44,6 +44,34 @@ function crearPruebas()
     
     // Mostrar el formulario
     require_once __DIR__ . '/../Vista/administrador/crearPruebas.php';
+}
+function crearModalidades()
+{
+    // Si es POST, procesar el formulario
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $codigoModalidad = trim($_POST['codigoModalidad'] ?? '');
+        $modalidad = trim($_POST['modalidad'] ?? '');
+        
+        // Validar que no estén vacíos
+        if (empty($codigoModalidad) || empty($modalidad) ) {
+            $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Por favor rellena todos los campos.</div>';
+        } else {
+            $modelPath = __DIR__ . '/../Modelo/class.admin.php';
+            if (file_exists($modelPath)) {
+                require_once $modelPath;
+                $model = new admin();
+                
+                if ($model->crearModalidad($codigoModalidad, $modalidad)) {
+                    $msg = '<div class="mt-4 p-4 bg-green-100 text-green-700 rounded">Prueba creada correctamente.</div>';
+                } else {
+                    $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Error al crear la prueba.</div>';
+                }
+            }
+        }
+    }
+    
+    // Mostrar el formulario
+    require_once __DIR__ . '/../Vista/administrador/crearModalidades.php';
 }
 
 function buscarPaciente()
@@ -70,47 +98,48 @@ function bajas()
 
 }
 
-
-
-function altaMedicos()
-{
-     require_once(__DIR__.'/../Vista/principal/header.html');
-    require_once(__DIR__.'/../Vista/administrador/altasMedicos.php');
-}
-
-
-
-function crearModalidades()
-{
-     require_once(__DIR__.'/../Vista/principal/header.html');
-    require_once(__DIR__.'/../Vista/administrador/crearMOdalidades.php');
-}
-
 function desvalidarInformes()
 {
      require_once(__DIR__.'/../Vista/principal/header.html');
     require_once(__DIR__.'/../Vista/administrador/desvalidarInformes.php');
 }
 
-function altasMedicos()
+function altaMedicos()
 {
-     $modelPath = __DIR__ . '/../Modelo/class.admin.php';
-    require_once $modelPath;
-    
-    $resultado = new admin();
-    if($resultado->altasMedicos(    $_POST["login"], $_POST["password"])){
-        if($resultado->medicosAdmin($_POST["num_Colegiado"], $_POST["nombre"], $_POST["apellidos"], $_POST["login"])){
-
-            require_once(__DIR__.'/../Vista/administrador/altasMedicos.php');
-            require_once(__DIR__.'/../Vista/principal/header.html');
-        }
-        
-    // require_once('./Vista/resultados.php');
-    } else {
-        echo "No se encontraron resultados.";
+    $modelPath = __DIR__ . '/../Modelo/class.admin.php';
+    if (file_exists($modelPath)) {
+        require_once $modelPath;
     }
 
+    $msg = '';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $login = trim($_POST['login'] ?? '');
+        $password = trim($_POST['password'] ?? '');
+        $numColegiado = trim($_POST['num_Colegiado'] ?? '');
+        $nombre = trim($_POST['nombre'] ?? '');
+        $apellidos = trim($_POST['apellidos'] ?? '');
+
+        if (!empty($login) && !empty($password)) {
+            $resultado = new admin();
+            if ($resultado->altasMedicos($login, $password)) {
+                if ($resultado->medicosAdmin($numColegiado, $nombre, $apellidos, $login)) {
+                    $msg = '<div class="mt-4 p-4 bg-green-100 text-green-700 rounded">Médico creado correctamente.</div>';
+                } else {
+                    $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Error al crear el médico en la tabla médico.</div>';
+                }
+            } else {
+                $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Error al crear el usuario.</div>';
+            }
+        } else {
+            $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Por favor rellena los campos de login y password.</div>';
+        }
+    }
+
+    require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/administrador/altasMedicos2.php');
 }
+
+
 
 function modificarPacientes()
 {

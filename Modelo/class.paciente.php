@@ -16,7 +16,7 @@ class paciente
     {
         $sent = "select d.descripcion,c.resultados,a.NHC,b.nombre as nombrePaciente,b.apellidos as apellidosPaciente,e.apellidos as apellidosMedico 
             from estudios a LEFT join pacientes b on a.NHC = b.NHC left join informes c on a.id_informe = c.id_informe 
-            LEFT join pruebas d on a.cod_prueba = d.cod_prueba left join medico e on a.num_colegiado = e.nºColegiado 
+            LEFT join pruebas d on a.cod_prueba = d.cod_prueba left join medico e on a.num_colegiado = e.num_Colegiado 
             where a.informado = 1 
             and b.login = ?
             limit 10

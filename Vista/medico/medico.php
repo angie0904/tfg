@@ -21,6 +21,7 @@ if ($action === 'buscarPaciente') {
     <nav class="space-y-2">
       <a href="?action=buscarPaciente" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">🔍</span>Buscar paciente</a>
       <a href="?action=solicitarPrueba" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">📊</span>Mis estudios Pendientes</a>
+      <a href="?action=estudiosPendientes" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">📊</span>Estudios Pendientes</a>
       <a href="?action=otro" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition">Chat</a>
     </nav>
   </aside>
@@ -43,15 +44,25 @@ if ($action === 'buscarPaciente') {
               } else {
                   echo "<p>No se han encontrado resultados.</p>";
               }
-          } elseif ($action === 'solicitarPrueba') {
-              require __DIR__ . '/estudiosPedientes.php';
-          } elseif ($action === 'informe') {
-              require __DIR__ . '/informe.php';
-          } elseif ($action === 'otro') {
-              echo "<p>Contenido de la acción 'otro'.</p>";
-          } else {
-              require __DIR__ . '/busqueda.php';
-          }
+        }elseif ($action === 'solicitarPrueba') {
+              misEstudiosPendientes();
+            // require __DIR__ . '/estudiosPendientes.php';
+        } elseif ($action === 'estudiosPendientes') {
+              estudiosPendientes();
+            // require __DIR__ . '/estudiosPendientes.php';
+        } elseif ($action === 'informe') {
+            // incluir la vista informe como página independiente dentro del contenedor
+            getInforme();
+            // require __DIR__ . '/informe.php';
+        } elseif ($action === 'otro') {
+            echo "<p>Contenido de la acción 'otro'.</p>";
+        } elseif ($action === 'validarInforme') {
+           validarInforme();
+        } elseif ($action === 'guardarInforme') {
+            guardarInforme();
+        } else {
+            require __DIR__ . '/busqueda.php';
+        }
           ?>
         </section>
       </div>

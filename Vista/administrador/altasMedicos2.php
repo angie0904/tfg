@@ -1,73 +1,45 @@
 
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const closeBtn = document.getElementById('closeAltaModal');
-        const modal = document.getElementById('modalAlta');
-        
-        closeBtn.addEventListener('click', function() {
-            modal.classList.add('fade-out');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                window.location.href = '?action=altasMedicos';
-            }, 300);
-        });
-        
-        // Cerrar con ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                modal.classList.add('fade-out');
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    window.location.href = '?action=altasMedicos';
-                }, 300);
-            }
-        });
-    });
-</script>
-
-<style>
-    @keyframes bounceIn {
-        0% {
-            opacity: 0;
-            transform: scale(0.8) translateY(-20px);
-        }
-        50% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-        }
-    }
+  <style>
+    .form-container{max-width:480px;margin:2rem auto;padding:1.25rem;border:1px solid #e5e7eb;border-radius:8px;background:#fff}
+    .field{margin-bottom:0.75rem}
+    label{display:block;margin-bottom:0.25rem;font-weight:600}
+    input{width:100%;padding:0.5rem;border:1px solid #cbd5e1;border-radius:6px}
+    button{display:inline-block;padding:0.6rem 1rem;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer}
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<?php if (isset($err)): ?>
+            <div id="errorModal" class="fixed inset-0  flex items-start justify-center pt-12">
+              
+              <div class=" bg-red-600/40 backdrop-blur-sm rounded-lg shadow-lg w-11/12  text-center">
+                <h3 class="text-xl font-semibold text-red-600 mb-2">Error</h3>
+                <p class="mb-4">Contraseña Incorrecta<br>Vuelve a intentarlo</p>
+                
+                <div class="flex justify-center">
+                  <button id="closeModal" class="px-4 py-2 bg-blue-600 text-white rounded">Cerrar</button>
+                </div>
+              </div>
+            </div>
+            
+            <script>
+            (function(){
+              const modal = document.getElementById('errorModal');
+              const btn = document.getElementById('closeModal');
+              btn.addEventListener('click', () => modal.remove());
+              // cerrar con ESC
+              document.addEventListener('keydown', (e) => { if (e.key === 'Escape') modal.remove(); });
+            })();
+            </script>
+          <?php endif; ?>
+<body>
+  
+  <main>
     
-    @keyframes fadeOut {
-        0% {
-            opacity: 1;
-            transform: scale(1);
-        }
-        100% {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-    }
-    
-    .animate-bounce-in {
-        animation: bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    .fade-out {
-        animation: fadeOut 0.3s ease-out;
-    }
-</style>
-<?php endif; ?>
-
-<main>
-    <div class="max-w-2xl mx-auto">
+   <div class="max-w-2xl mx-auto">
         <!-- Título -->
         <div class="mb-8">
             <h1 class="text-3xl font-bold text-gray-900">Alta de Medico</h1>
-            <p class="text-gray-600 mt-2">Registra  un empleado Medico en el sistema</p>
+            <p class="text-gray-600 mt-2">Registra  un empleado Medico en el sistema v2</p>
         </div>
 
         <!-- Formulario de alta -->
@@ -114,20 +86,14 @@
                 </div>
 
                  <div>
-                    <label for="num_Colegiado" class="block text-gray-700 font-semibold mb-2">Nº</label>
+                    <label for="num_Colegiado" class="block text-gray-700 font-semibold mb-2">Nº Colegiado</label>
                     <input id="num_Colegiado" name="num_Colegiado" type="text" placeholder="Usuario para acceso"
                            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                            required>
                 </div>
-
-                
-
-                
-               
-
                 <!-- Botones -->
                 <div class="flex gap-4 pt-6">
-                    <button type="submit" name="crear"
+                    <button type="submit" action= "?action=altasMedicos" name="crear"
                             class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-200 shadow-md">
                         ✓ Crear Usuario
                     </button>
@@ -141,4 +107,6 @@
             </form>
         </div>
     </div>
-</main>
+  </main>
+
+  

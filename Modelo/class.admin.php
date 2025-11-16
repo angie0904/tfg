@@ -56,16 +56,31 @@ function getInforme()
     return $result;
 }
 
-function crearPrueba($codigo, $descripcion, $modalidad)
+function crearPrueba($codigo, $descripcion)
 {
-    $consulta = "INSERT INTO pruebas (cod_prueba, descripcion, modalidad) VALUES (?, ?, ?)";
+    $consulta = "INSERT INTO pruebas (cod_prueba, descripcion) VALUES (?, ?)";
     $sentencia = $this->conn->prepare($consulta);
     
     if (!$sentencia) {
         return false;
     }
     
-    $sentencia->bind_param("sss", $codigo, $descripcion, $modalidad);
+    $sentencia->bind_param("ss", $codigo, $descripcion);
+    $resultado = $sentencia->execute();
+    
+    $sentencia->close();
+    return $resultado;
+}
+function crearModalidad($codigoModalidad, $modalidad)
+{
+    $consulta = "INSERT INTO modalidad (cod_modalidad, descripcion) VALUES (?, ?)";
+    $sentencia = $this->conn->prepare($consulta);
+    
+    if (!$sentencia) {
+        return false;
+    }
+    
+    $sentencia->bind_param("ss", $codigoModalidad, $modalidad);
     $resultado = $sentencia->execute();
     
     $sentencia->close();
@@ -135,7 +150,7 @@ public function getPacienteByLogin($login)
 
 public function medicosAdmin($nColegiado, $nombre, $apellidos, $login)
 {
-    $sent = "INSERT INTO medico (nºColegiado, nombre, apellidos, activo,login) VALUES (?, ?, ?, 1,?)";
+    $sent = "INSERT INTO medico (num_Colegiado, nombre, apellidos, activo,login) VALUES (?, ?, ?, 1,?)";
     $cons = $this->conn->prepare($sent);
     
     if (!$cons) {

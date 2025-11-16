@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODOS Estudios Pendientes</title>
+    <title>Estudios Pendientes</title>
     <link rel="stylesheet" href="../../Recursos/css/app.css">
     <style>
         table {
