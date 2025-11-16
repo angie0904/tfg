@@ -2,7 +2,7 @@
 session_start();
 
 // Verificamos que esté logueado
-include(__DIR__.'/../../Utilidades/funciones.php');
+include(__DIR__.'/../../Utilidades/funcionesadmin.php');
 // Verificamos que esté logueado
  if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");

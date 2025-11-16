@@ -1,20 +1,25 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+
 <body class="min-h-screen flex">
 
-    <!-- Imagen a la izquierda -->
-    <div class="w-1/2 h-screen">
-        <img src="./Recursos/img/login.jpg" alt="Login" class="w-full h-full object-cover bg-purple-50">
-       
+    <!-- Imagen a la izquierda con overlay y texto -->
+    <div class="w-1/2 h-screen relative overflow-hidden">
+        <img src="./Recursos/img/login.jpg" alt="Login" class="w-full h-full object-cover">
+        
+        <!-- Filtro oscuro que aclara la imagen -->
+        <div class="absolute inset-0 bg-black opacity-70"></div>
+        
+        <!-- Texto centrado -->
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center">
+                <h1 class="text-6xl font-bold" style="font-family: 'Roboto Slab';">
+                    <span style="color: #60a1deff;">Control</span><span style="color: #7e8691ff;">T2</span>
+                </h1>
+            </div>
+        </div>
     </div>
 
     <!-- Formulario a la derecha -->
-    <div class="w-1/2 h-screen flex items-center justify-center bg-gray-100">
+    <div class="w-1/2 h-screen flex items-center justify-center bg-gray-200">
         <form action="?action=iniciarSesion" method="post" class="w-full max-w-md bg-white p-8 rounded shadow-lg space-y-6">
 
             <h1 class="text-2xl font-bold text-center">Inicia Sesión</h1>
@@ -38,7 +43,10 @@
             </div>
 
             <button type="submit" name="fini"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition duration-200">
+                class="w-full text-white font-semibold py-2 rounded transition duration-200"
+                style="background-color: #1964ab;" 
+                onmouseover="this.style.backgroundColor='#0d3a7d'"
+                onmouseout="this.style.backgroundColor='#1964ab'">
                 Iniciar Sesión
             </button>
 
@@ -52,13 +60,16 @@
     <!-- Modal de error centralizado -->
     <?php if (isset($err)): ?>
     <div id="errorModal" class="fixed inset-0 z-50 flex items-center justify-center">
-      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <div class="absolute inset-0 bg-black opacity-70"></div>
       <div class="relative bg-white rounded-lg shadow-lg w-11/12 max-w-md p-6 mx-4 text-center">
         <h3 class="text-xl font-semibold text-red-600 mb-2">Error</h3>
         <p class="mb-4">Contraseña Incorrecta<br>Vuelve a intentarlo</p>
         
         <div class="flex justify-center">
-          <button id="closeModal" class="px-4 py-2 bg-blue-600 text-white rounded">Cerrar</button>
+          <button id="closeModal" class="px-4 py-2 text-white rounded"
+            style="background-color: #1964ab;">
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
@@ -74,8 +85,6 @@
     </script>
     <?php endif; ?>
 
-        
-    </div>
-
-
-
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+</html>

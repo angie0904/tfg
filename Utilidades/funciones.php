@@ -89,6 +89,7 @@ function iniciarSesion()
         elseif($modelo->pswIncorrecta($_POST["nom"], !$_POST["psw"])){
             $err = "";
             require_once("./Vista/login.php");
+
             
 
         } else {
@@ -96,6 +97,7 @@ function iniciarSesion()
  
             require_once(__DIR__.'/../Vista/principal/header.html');
             require_once("./Vista/crearUsuario.php");
+            require_once(__DIR__.'/../Vista/principal/footer.html');
         }
 
     } else {
@@ -119,6 +121,7 @@ function listaResul()
         require_once(__DIR__.'../Vista/paciente/resultados.php');
         
         require_once(__DIR__.'/../Vista/principal/header.html');
+        
         
     // require_once('./Vista/resultados.php');
     } else {
@@ -231,6 +234,8 @@ function insertarPrueba()
 
 }
 
+
+
 function informe()
 {
      require_once(__DIR__.'/../Vista/principal/header.html');
@@ -255,6 +260,7 @@ function bajas()
 {
      require_once(__DIR__.'/../Vista/principal/header.html');
     require_once(__DIR__.'/../Vista/administrador/bajas.php');
+
 }
 
 function altaPacientes()

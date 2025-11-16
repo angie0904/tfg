@@ -14,6 +14,7 @@ if (isset($_REQUEST['action'])) {
 
     
     require_once('./Vista/principal/Inicio.html');
+    require_once('./Vista/principal/footer.html');
 }
 
 

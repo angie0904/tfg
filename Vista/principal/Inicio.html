@@ -146,7 +146,7 @@
       <img class="h-full object-contain" src="./Recursos/img/ico_0010_Objeto-inteligente-vectorial.png" >
     </div>
     <h4 class="text-lg font-bold uppercase mb-3">Test Prenatal no invasivo</h4>
-    <p>Análitica en sangre materna que detecta las principales alteraciones cromosómicas del feto</p>
+    <p>Analítica en sangre materna que detecta las principales alteraciones cromosómicas del feto</p>
   </div>
 
   <!-- Card -->
@@ -169,89 +169,55 @@
 
 </div>
 
-
       <!-- Botones -->
       <button id="prev"
-        class="absolute top-1/2 left-0 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600">
+        class="absolute top-1/2 left-0 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 z-10">
         &#10094;
       </button>
       <button id="next"
-        class="absolute top-1/2 right-0 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600">
+        class="absolute top-1/2 right-0 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 z-10">
         &#10095;
       </button>
 
     </div>
   </section>
-</main>
-<footer class="bg-gray-900 text-gray-300 py-10 mt-10">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
 
-    <!-- Sección 1: Acerca de -->
-    <div>
-      <h3 class="text-white text-lg font-semibold mb-3">Sobre ControlT2</h3>
-      <p class="text-sm leading-relaxed">
-        ControlT2 es una plataforma web sanitaria diseñada para optimizar la comunicación y gestión de información médica entre pacientes, profesionales y administradores. 
-        Nuestro objetivo es ofrecer un entorno seguro, accesible y eficiente para la solicitud y análisis de pruebas médicas.
-      </p>
-    </div>
-
-
-    <div>
-      <h3 class="text-white text-lg font-semibold mb-3">Plataforma</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href="/inicio" class="hover:text-white text-decoration-none text-white">Inicio</a></li>
-        <li><a href="/sobre-nosotros" class="hover:text-white text-decoration-none text-white">Quiénes somos</a></li>
-        <li><a href="/contacto" class="hover:text-white text-decoration-none text-white">Contacto</a></li>
-      </ul>
-    </div>
-
-    <!-- Sección 3: Contacto -->
-    <div>
-      <h3 class="text-white text-lg font-semibold mb-3">Contacto</h3>
-      <p class="text-sm">Correo: <a href="mailto:info@controlt2.com" class=" text-decoration-none text-white">info@controlt2.com</a></p>
-      <p class="text-sm">Teléfono: +34 600 123 456</p>
-
-    </div>
-
-  </div>
-
-  <!-- Línea inferior -->
-  <div class="mt-8 border-t border-gray-700 pt-4 text-center text-xs text-gray-500">
-    ControlT2 — Proyecto académico orientado a la innovación sanitaria digital.
-  </div>
-</footer>
-
-</body>
-
-<script>
-  const carousel = document.getElementById("carousel");
-  const nextBtn = document.getElementById("next");
-  const prevBtn = document.getElementById("prev");
-
-  let index = 0;
-  const totalCards = carousel.children.length;
-  const cardsPerPage = 3;
-  const maxIndex = Math.ceil(totalCards / cardsPerPage) - 1;
-
-  function updateCarousel() {
-    carousel.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  nextBtn.addEventListener("click", () => {
-    index = index < maxIndex ? index + 1 : 0;
-    updateCarousel();
-  });
-
-  prevBtn.addEventListener("click", () => {
-    index = index > 0 ? index - 1 : maxIndex;
-    updateCarousel();
-  });
-
-  // // Auto-play cada 3s
-  // setInterval(() => {
-  //   index = index < maxIndex ? index + 1 : 0;
-  //   updateCarousel();
-  // }, 3000);
-</script>
-
-
+  <script>
+    const carousel = document.getElementById("carousel");
+    const nextBtn = document.getElementById("next");
+    const prevBtn = document.getElementById("prev");
+  
+    let index = 0;
+    const totalCards = carousel.children.length;
+    const cardsPerPage = window.innerWidth >= 768 ? 3 : 1; // 3 en desktop, 1 en mobile
+    const maxIndex = totalCards - cardsPerPage;
+  
+    function updateCarousel() {
+      const offset = index * (100 / cardsPerPage);
+      carousel.style.transform = `translateX(-${offset}%)`;
+    }
+  
+    nextBtn.addEventListener("click", () => {
+      index = index < maxIndex ? index + 1 : 0;
+      updateCarousel();
+    });
+  
+    prevBtn.addEventListener("click", () => {
+      index = index > 0 ? index - 1 : maxIndex;
+      updateCarousel();
+    });
+  
+    // Detectar cambios de tamaño de pantalla
+    window.addEventListener("resize", () => {
+      const newCardsPerPage = window.innerWidth >= 768 ? 3 : 1;
+      if (newCardsPerPage !== cardsPerPage) {
+        location.reload();
+      }
+    });
+  
+    // // Auto-play cada 3s
+    // setInterval(() => {
+    //   index = index < maxIndex ? index + 1 : 0;
+    //   updateCarousel();
+    // }, 3000);
+  </script>

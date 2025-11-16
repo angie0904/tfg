@@ -1,9 +1,7 @@
 <?php
 
-// Render dinámico de la página 
 $action = $_REQUEST['action'] ?? '';
 
-// Si la acción necesita datos (resultados) los cargamos aquí
 $arrayResultados = null;
 if ($action === 'buscarPaciente') {
     $modelPath = __DIR__ . '/../../Modelo/class.medico.php';
@@ -16,94 +14,47 @@ if ($action === 'buscarPaciente') {
     }
 }
 ?>
-<main>
-  <!-- Menú fijo a la izquierda -->
-  <aside class="fixed left-0 top-20 h-screen w-64 rounded-left-2xl border border-gray-200 p-6 shadow bg-blue-200">
-    
 
+<div class="flex h-[calc(100vh-80px)]">
+  <!-- Menú fijo a la izquierda -->
+  <aside class="w-64 border-r border-gray-200 p-6 shadow-lg bg-blue-200 overflow-y-auto">
     <nav class="space-y-2">
-      <a href="?action=buscarPaciente" class="block px-3 py-2 rounded-md  hover:bg-blue-100 text-black text-decoration-none">Buscar paciente</a>
-      <a href="?action=solicitarPrueba" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none">Mis estudios Pendientes</a>
-      <a href="?action=otro" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100  text-black text-decoration-none">Chat </a>
+      <a href="?action=buscarPaciente" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">🔍</span>Buscar paciente</a>
+      <a href="?action=solicitarPrueba" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">📊</span>Mis estudios Pendientes</a>
+      <a href="?action=otro" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition">Chat</a>
     </nav>
   </aside>
 
-  
-  <div class="ml-64 p-6 min-h-screen bg-gray-50">
-    <div class="container mx-auto">
-      <div class="text-center mb-6">
-        <p class="text-lg text-gray-700">
-          Bienvenido, <?php echo htmlspecialchars($_SESSION['nom'] ?? 'Usuario'); ?>
-        </p>
-      </div>
+  <!-- Contenido principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <div class="flex-1 p-6 bg-gray-50 overflow-y-auto">
+      <div class="container mx-auto">
+        <div class="text-center mb-6">
+          <p class="text-lg text-gray-700">
+            Bienvenido, <?php echo htmlspecialchars($_SESSION['nom'] ?? 'Usuario'); ?>
+          </p>
+        </div>
 
-      <section id="contenido-principal" class="bg-white rounded-lg p-6 shadow">
-       <?php
-// ...existing code...
-        // Cargar vistas según la acción
-        if ($action === 'buscarPaciente') {
-            // La vista resultados.php espera $arrayResultados
-            if (isset($arrayResultados)) {
-                require __DIR__ . '/busqueda.php';
-            } else {
-                echo "<p>No se han encontrado resultados.</p>";
-            }
-        } elseif ($action === 'solicitarPrueba') {
-            require __DIR__ . '/estudiosPedientes.php';
-        } elseif ($action === 'informe') {
-            // incluir la vista informe como página independiente dentro del contenedor
-            require __DIR__ . '/informe.php';
-        } elseif ($action === 'guardar') {
-            // incluir la vista informe como página independiente dentro del contenedor
-            require __DIR__ . '../login.php';
-        } elseif ($action === 'otro') {
-            echo "<p>Contenido de la acción 'otro'.</p>";
-        } else {
-            require __DIR__ . '/busqueda.php';
-        }
-// ...existing code...
-        ?>
-      </section>
+        <section id="contenido-principal" class="bg-white rounded-lg p-6 shadow">
+          <?php
+          if ($action === 'buscarPaciente') {
+              if (isset($arrayResultados)) {
+                  require __DIR__ . '/busqueda.php';
+              } else {
+                  echo "<p>No se han encontrado resultados.</p>";
+              }
+          } elseif ($action === 'solicitarPrueba') {
+              require __DIR__ . '/estudiosPedientes.php';
+          } elseif ($action === 'informe') {
+              require __DIR__ . '/informe.php';
+          } elseif ($action === 'otro') {
+              echo "<p>Contenido de la acción 'otro'.</p>";
+          } else {
+              require __DIR__ . '/busqueda.php';
+          }
+          ?>
+        </section>
+      </div>
     </div>
   </div>
-</main>
-<!-- Si usas Tailwind via CDN -->
-<!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
-
-
-
-<!-- <main>
-  <!-- <form action="index.php?action=formPaciente" method="post"> 
-<div class="container ",id="paciente" >
-
-
-
-
-        <aside class="fixed left-0 top-19 h-screen w-64 rounded-left-2xl border border-gray-200 p-6 shadow bg-white " >
-       
-          <h2 class="text-xl font-bold mb-3">Panel rápido</h2>
-
-          <nav class="space-y-2">
-            <a href="?action=listaResul" class="flex items-center gap-3 p-3 rounded-md text-decoration-none bg-gray-300 text-black">
-              <span class="text-sm font-medium">Ver resultados</span>
-            </a>
-
-            <a href="?action=solicitarPrueba" class="flex items-center gap-3 p-3 text-decoration-none bg-gray-300 text-black">
-              <span class="text-sm font-medium">Solicitar prueba</span>
-            </a>
-
-           
-          </nav>
-
-          
-        
-      </aside>
-            </div>
-       
-
-     
-
-      
-</main> -->
-
- <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+</div>
