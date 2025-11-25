@@ -31,16 +31,15 @@
 
                 // Tabla de resultados detallada
                 echo "<table border='1' style='width:100%;border-collapse:collapse;'>";
-                echo "<tr><th style='padding:8px;text-align:left;'>Prueba</th><th style='padding:8px;text-align:left;'>Resultados</th><th style='padding:8px;text-align:left;'>Valores normales</th></tr>";
+                echo "<tr><th style='padding:8px;text-align:center;'>Prueba</th><th style='padding:8px;;text-align:center;'>Resultados</th></tr>";
 
                 foreach ($arrayResultados as $key => $value) {
                     $prueba = htmlspecialchars($value[0] ?? '');
                     $resul = htmlspecialchars($value[1] ?? '');
-                    $valores = htmlspecialchars($value[2] ?? '');
+                    
                     echo "<tr>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$prueba</td>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$resul</td>";
-                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;'>$valores</td>";
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;text-align:center;'>$prueba</td>";
+                    echo "<td style='padding:8px;border-top:1px solid #e5e7eb;text-align:center;'>$resul</td>";
                     echo "</tr>";
                 }
 

@@ -1,0 +1,53 @@
+
+<div class="space-y-6">
+  <!-- Título de bienvenida -->
+  <div class="bg-blue-400  text-white rounded-lg p-8 shadow-lg text-center">
+    <h1 class="text-4xl font-bold mb-2">Bienvenido, Dr./Dra. <?php echo htmlspecialchars($_SESSION['nom'] ?? 'Médico'); ?>!</h1>
+    <p class="text-purple-100">Gestiona pacientes, estudios pendientes e informes médicos</p>
+  </div>
+
+
+
+ 
+
+
+
+
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Tarjeta: Buscar Paciente -->
+    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6 border-l-4 border-purple-400">
+      <div class="flex items-center mb-4">
+        <span class="text-4xl mr-4">🔍</span>
+        <h2 class="text-xl font-bold text-gray-800">Buscar Paciente</h2>
+      </div>
+      <p class="text-gray-600 mb-4 text-sm">Busca pacientes por su número de historia clínica (NHC)</p>
+      <a href="?action=buscarPaciente" class="inline-block bg-purple-500 hover:bg-purple-400 text-white font-semibold py-2 px-4 rounded transition text-sm">
+        Buscar
+      </a>
+    </div>
+
+    <!-- Tarjeta: Mis Estudios Pendientes -->
+    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6 border-l-4 border-orange-500">
+      <div class="flex items-center mb-4">
+        <span class="text-4xl mr-4">📊</span>
+        <h2 class="text-xl font-bold text-gray-800">Mis Estudios</h2>
+      </div>
+      <p class="text-gray-600 mb-4 text-sm">Visualiza tus estudios pendientes de validación</p>
+      <a href="?action=solicitarPrueba" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded transition text-sm">
+        Ver Estudios
+      </a>
+    </div>
+
+    <!-- Tarjeta: Estudios Pendientes -->
+    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6 border-l-4 border-red-500">
+      <div class="flex items-center mb-4">
+        <span class="text-4xl mr-4">⏳</span>
+        <h2 class="text-xl font-bold text-gray-800">Todos los Estudios</h2>
+      </div>
+      <p class="text-gray-600 mb-4 text-sm">Consulta todos los estudios pendientes del hospital</p>
+      <a href="?action=estudiosPendientes" class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition text-sm">
+        Ver Todos
+      </a>
+    </div>
+  </div>

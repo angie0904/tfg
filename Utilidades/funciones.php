@@ -87,7 +87,7 @@ function listaResul()
     if($arrayResultados = $result->getResultados()){
         require_once(__DIR__.'/../Vista/principal/head.html');
         
-        require_once(__DIR__.'../Vista/paciente/resultados.php');
+        require_once(__DIR__.'/../Vista/paciente/resultados.php');
         
         require_once(__DIR__.'/../Vista/principal/header.html');
         
@@ -435,7 +435,7 @@ function logout()
     // Clear session variables
     $_SESSION = array();
 
-    // If there's a session cookie, delete it
+  
     if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();
         setcookie(session_name(), '', time() - 42000,
@@ -443,18 +443,17 @@ function logout()
         );
     }
 
-    // Destroy the session
     session_unset();
     session_destroy();
 
-    // Remove remembered username cookie if present
+    // cokies
     if (isset($_COOKIE['nom'])) {
         setcookie('nom', '', time() - 3600, '/');
         unset($_COOKIE['nom']);
     }
 
-        // Redirect to project root on localhost
-        header('Location: http://localhost/tfg/');
+        // redirige al proyecto raiz en localhost
+        header('Location: /tfg/');
         exit;
-    exit;
+    
 }

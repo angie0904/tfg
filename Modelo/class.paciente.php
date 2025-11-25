@@ -12,7 +12,7 @@ class paciente
     }
 
 
-    public function getResultados($login)
+    public function getResultados()
     {
         $sent = "select d.descripcion,c.resultados,a.NHC,b.nombre as nombrePaciente,b.apellidos as apellidosPaciente,e.apellidos as apellidosMedico 
             from estudios a LEFT join pacientes b on a.NHC = b.NHC left join informes c on a.id_informe = c.id_informe 

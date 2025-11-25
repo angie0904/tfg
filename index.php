@@ -1,6 +1,7 @@
 <?php
 include('./Utilidades/funciones.php');
 
+
 if (isset($_REQUEST['action'])) {
     $action = strtolower($_REQUEST['action']);
 

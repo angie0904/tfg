@@ -1,6 +1,8 @@
 <?php
 // ...existing code...
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 function getMedicos()
 {
     $sent = "SELECT nºColegiado, nombre, apellidos, especialidad FROM medico";
@@ -165,4 +167,38 @@ function modificarPacientes()
     // Mostrar la vista siempre
     require_once(__DIR__.'/../Vista/administrador/modificarPacientes.php');
 }
+
+function logout()
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Clear session variables
+    $_SESSION = array();
+
+    // If there's a session cookie, delete it
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params['path'], $params['domain'], $params['secure'], $params['httponly']
+        );
+    }
+
+    // Destroy the session
+    session_unset();
+    session_destroy();
+
+    // Remove remembered username cookie if present
+    if (isset($_COOKIE['nom'])) {
+        setcookie('nom', '', time() - 3600, '/');
+        unset($_COOKIE['nom']);
+    }
+
+    // Redirect to project root on localhost
+    header('Location: /tfg/');
+    exit;
+
+}
+
 ?>
