@@ -146,7 +146,26 @@ public function getPacienteByLogin($login)
     
     $cons->close();
     return $resultado;
+
 }
+public function altaMedicosv2()
+{
+    // Mostramos medicos.
+    $sent = "Select a.login, a.password,b.nombre,b.apellidos FROM usuarios a, medico b WHERE a.login=b.login";
+    $cons = $this->conn->prepare($sent);
+    $cons->execute();    
+    $cons->bind_result($login,$password,$Nombre,$Apellidos);
+    $found = array();
+        while($cons->fetch()){
+                array_push($found, [$login,$password, $Nombre, $Apellidos]);
+        };
+    
+    
+    
+    $cons->close();
+    return $found;
+}
+
 
 public function medicosAdmin($nColegiado, $nombre, $apellidos, $login)
 {

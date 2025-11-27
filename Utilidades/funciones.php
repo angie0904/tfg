@@ -211,7 +211,7 @@ function misEstudiosPendientes()
     $resul = new medico();
     if($arrayResultados = $resul->misEstudiosPendientes($login)){
         
-        require_once(__DIR__.'/../Vista/medico/estudiosPendientes.php');
+        require_once(__DIR__.'/../Vista/medico/estudiosPedientes.php');
         require_once(__DIR__.'/../Vista/principal/header.html');
         
     // require_once('./Vista/resultados.php');

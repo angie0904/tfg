@@ -176,7 +176,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
     }
 </style>
 <?php endif; ?>
-
+<style>
+    h2 {
+       
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        color: #226bbeff;
+    }
+</style>
 <!-- Formulario de búsqueda -->
 <div class="flex items-center justify-center mb-8">
     <form action="?action=bajas" method="post" class="w-full max-w-md bg-white p-8 rounded-xl shadow-lg border border-gray-100">

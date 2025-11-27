@@ -49,21 +49,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fini'])) {
 
 
 <!-- Tabla con TH fijo arriba. El cuerpo solo se rellena tras buscar -->
-<div class="max-w-4xl mx-auto bg-white rounded shadow m-6">
+<div class="max-w-4xl mx-auto bg-white rounded  m-6">
     <div class="overflow-y-auto" style="max-height:300px;">
         <table class="min-w-full table-fixed border-collapse">
             <thead>
                 <tr class="text-left">
-                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">NHC</th>
-                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Nombre</th>
-                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Apellidos</th>
-                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Fecha Nacimiento</th>
+                    <th class="sticky top-0 bg-blue-200 px-4 py-2 border">NHC</th>
+                    <th class="sticky top-0 bg-blue-200 px-4 py-2 border">Nombre</th>
+                    <th class="sticky top-0 bg-blue-200 px-4 py-2 border">Apellidos</th>
+                    <th class="sticky top-0 bg-blue-200 px-4 py-2 border">Fecha Nacimiento</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if ($pac): ?>
                     <tr class="even:bg-gray-50">
-                        <td class="px-4 py-2 border"><?php echo htmlspecialchars($pac[0][0] ??  ''); ?></td>
+                        <td class="px-4 py-2 border "><?php echo htmlspecialchars($pac[0][0] ??  ''); ?></td>
                         <td class="px-4 py-2 border"><?php echo htmlspecialchars($pac[0][1] ?? ''); ?></td>
                         <td class="px-4 py-2 border"><?php echo htmlspecialchars($pac[0][2] ?? ''); ?></td>
                         <td class="px-4 py-2 border"><?php echo htmlspecialchars($pac[0][3] ?? ''); ?></td>
@@ -103,12 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fini'])) {
 ?>
 
 <div class="flex items-center justify-center mb-6">
-    <form action="?action=buscarPaciente" method="post" class="w-full max-w-md bg-white p-6 rounded shadow space-y-4">
+    <form action="?action=buscarPaciente" method="post" class="w-full max-w-md  p-6 rounded shadow space-y-4">
         <h3 class="text-2xl  text-center">Buscar paciente por NHC</h3>
 
         <div>
             <input id="nhc" name="nom" type="text" placeholder="Numero de historia clínica (NHC)"
-                   class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
+                   class="w-full border border-blue-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
                    value="<?php echo htmlspecialchars($nhcSearched); ?>">
 
         </div>
@@ -123,16 +123,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fini'])) {
 </div>
     <table class="min-w-full table-fixed border-collapse mb-6">
         <thead>
-                <tr class="text-center">
-                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Prueba</th>
-                    <th class="sticky top-0 bg-gray-100 px-4 py-2 border">Estado</th>
+                <tr class="text-center bg-blue-800">
+                    <th class="sticky top-0 bg-blue-200 px-4 py-2 border">Prueba</th>
+                    <th class="sticky top-0 bg-blue-200 px-4 py-2 border">Estado</th>
                 </tr>
             </thead>
             <?php if (is_array($pac) && count($pac) > 0): ?>
                 <?php foreach($pac as $key => $value):?>
-                    <tr class="min-w-full table-fixed border-collapse mb-6">
-                        <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[5] ?? ''); ?></td>
-                        <td class="px-4 py-2 border"><?php echo htmlspecialchars($value[6] ?? ''); ?></td>
+                    <tr class="min-w-full table-fixed border-collapse mb-6 ">
+                        <td class="px-4 py-2 border text-center"><?php echo htmlspecialchars($value[5] ?? ''); ?></td>
+                        <td class="px-4 py-2 border text-center"><?php echo htmlspecialchars($value[6] ?? ''); ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>

@@ -125,7 +125,7 @@ function altaMedicos()
             $resultado = new admin();
             if ($resultado->altasMedicos($login, $password)) {
                 if ($resultado->medicosAdmin($numColegiado, $nombre, $apellidos, $login)) {
-                    $msg = '<div class="mt-4 p-4 bg-green-100 text-green-700 rounded">Médico creado correctamente.</div>';
+                    $msg = '<div class="mt-4 p-4 bg-green-100 text-green-700  rounded">Médico creado correctamente.</div>';
                 } else {
                     $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Error al crear el médico en la tabla médico.</div>';
                 }
@@ -138,7 +138,7 @@ function altaMedicos()
     }
 
     require_once(__DIR__.'/../Vista/principal/header.html');
-    require_once(__DIR__.'/../Vista/administrador/altasMedicos2.php');
+    require_once(__DIR__.'/../Vista/administrador/altasMedicos.php');
 }
 
 
@@ -200,5 +200,19 @@ function logout()
     exit;
 
 }
-
+function altaMedicosv2()
+{
+    $modelPath = __DIR__ . '/../Modelo/class.admin.php';
+    require_once $modelPath;
+    $resul = new admin();
+    if($arrayResultados = $resul->altaMedicosv2()){
+        
+        require_once(__DIR__.'/../Vista/administrador/altaMedicosv2.php');
+        require_once(__DIR__.'/../Vista/principal/header.html');
+        
+    // require_once('./Vista/resultados.php');
+    } else {
+        echo "No se encontraron resultados.";
+    }
+}
 ?>

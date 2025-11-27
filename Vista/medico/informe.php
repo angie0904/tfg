@@ -25,7 +25,7 @@
         .info-paciente h2 {
             margin-top: 0;
             color: #333;
-            border-bottom: 2px solid #4CAF50;
+            border-bottom: 2px solid #3896c8ff;
             padding-bottom: 10px;
         }
         .info-row {
@@ -168,7 +168,7 @@
             </div>
 
             <div style="display:flex; gap:12px; margin-top:10px;">
-                <button type="submit" formaction="index.php?action=validarInforme" class="btn-submit" style="background-color:#1976d2">Validar</button>
+                <button type="submit" formaction="index.php?action=validarInforme" class="btn-submit" style="background-color:#4CAF50">Validar</button>
                 <button type="submit" formaction="index.php?action=guardarInforme" class="btn-submit" style="background-color:#f39c12">Guardar</button>
             </div>
         </form>

@@ -59,10 +59,20 @@
     .fade-out {
         animation: fadeOut 0.3s ease-out;
     }
+
+
+    h1 {
+       
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        color: #226bbeff;
+    }
+
 </style>
-<?php endif; ?>
+
 
 <main>
+    <?php if (!empty($msg)) echo $msg; ?>
     <div class="max-w-2xl mx-auto">
         <!-- Título -->
         <div class="mb-8">
@@ -113,12 +123,6 @@
                            required>
                 </div>
 
-                 <div>
-                    <label for="num_Colegiado" class="block text-gray-700 font-semibold mb-2">Nº</label>
-                    <input id="num_Colegiado" name="num_Colegiado" type="text" placeholder="Usuario para acceso"
-                           class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                           required>
-                </div>
 
                 
 
@@ -137,7 +141,7 @@
                     </button>
                 </div>
 
-                <?php if (!empty($msg)) echo $msg; ?>
+                
             </form>
         </div>
     </div>

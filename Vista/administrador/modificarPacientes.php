@@ -1,3 +1,11 @@
+<style>
+    h1 {
+       
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        color: #226bbeff;
+    }
+</style>
 <?php
 
 // Procesar modificación
@@ -30,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificar'])) {
 ?>
 
 <div class="max-w-6xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6">Pacientes</h1>
+    <h1 class="text-3xl font-bold mb-6 ">Pacientes</h1>
 
     <?php if (!empty($msg)) echo $msg; ?>
 
@@ -93,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificar'])) {
 
 <!-- Modal de modificación -->
 <div id="modalModificar" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div class="relative bg-white rounded-2xl shadow-2xl w-11/12 max-w-2xl p-8 mx-4 max-h-96 overflow-y-auto">
+    <div class="relative bg-white rounded-2xl shadow-2xl w-11/12 max-w-2xl p-8 mx-4 max-h-200 overflow-y-auto">
         <button onclick="cerrarModalModificar()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>

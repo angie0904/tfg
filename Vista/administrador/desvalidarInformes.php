@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
 
 <!-- Modal de confirmación de desvalidación exitosa -->
 <?php if ($desvalidacionExitosa): ?>
-<div id="modalDesvalidacion" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-    <div class="relative bg-white rounded-2xl shadow-2xl w-11/12 max-w-md p-8 mx-4 animate-bounce-in">
+<div id="modalDesvalidacion" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm " >
+    <div class="relative bg-white rounded-2xl shadow-2xl w-11/12 max-w-md p-8 mx-4 animate-bounce-in  ">
         <!-- Icono de éxito -->
         <div class="flex justify-center mb-6">
             <div class="w-20 h-20 rounded-full bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center border-2 border-green-200">
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         </p>
 
         <!-- Detalles de la desvalidación -->
-        <div class="bg-green-50 border-2 border-green-200 rounded-lg p-6 mb-6 space-y-3">
+        <div class="bg-green-50 border-2 border-green-200 rounded-lg p-6 mb-6 space-y-3 ">
             <div class="flex items-center gap-3">
                 <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-200">
                     <svg class="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
@@ -178,6 +178,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
     .fade-out {
         animation: fadeOut 0.3s ease-out;
     }
+
+
+
 </style>
 <?php endif; ?>
 
@@ -186,12 +189,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
 
 <!-- Mostrar tabla de datos del informe si existe -->
 <?php if ($informe): ?>
-    <div class="max-w-6xl mx-auto mb-8">
+    <div class="container w-full overflow-x-auto mt-4">
         <h3 class="text-2xl font-bold text-gray-900 mb-6">Datos del Informe Encontrado</h3>
         
         <div class="bg-white rounded-xl shadow-lg border-l-4 border-blue-600 overflow-hidden">
             <div class="overflow-y-auto">
-                <table class="w-full border-collapse">
+                <table class="min-w-max w-full border-collapse">
                     <thead>
                         <tr class="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-left">
                             <th class="sticky top-0 px-4 py-3 border">ID Informe</th>
@@ -240,11 +243,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
 <?php endif; ?>
 
 <!-- Tabla de todos los informes validados -->
-<div class="max-w-6xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6">Informes Validados</h1>
+ <style>
+    h1 {
+       
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        color: #226bbeff;
+    }
+</style>
+<div class="max-w-6xl mx-auto h-100">
+    <h1 class="text-3xl  mb-6">Informes Validados</h1>
 
-    <div class="bg-white rounded shadow overflow-hidden">
-        <div class="overflow-y-auto" style="max-height:500px;">
+    <div class="bg-white rounded shadow max-h-200">
+        <div class="max-height:100px;">
             <table class="min-w-full table-fixed border-collapse">
                 <thead>
                     <tr class="bg-blue-600 text-white text-left">

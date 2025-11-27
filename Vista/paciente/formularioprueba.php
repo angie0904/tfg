@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $pruebas = $pac->solicitarPrueba();
 ?>
 
-<div class="max-w-4xl mx-auto bg-white rounded shadow m-6 p-6">
+<div class="max-w-4xl mx-auto bg-blue-100 rounded shadow m-6 p-6">
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Solicitar Nueva Prueba</h1>
     
     <?php if ($msg !== '' && !$showModal): ?>
@@ -46,7 +46,7 @@ $pruebas = $pac->solicitarPrueba();
     <form method="post" action="?action=solicitarPrueba">
         <div class="mb-6">
             <label for="selectPrueba" class="block text-gray-700 font-semibold mb-2">Selecciona una prueba</label>
-            <select id="selectPrueba" name="prueba" class="w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
+            <select id="selectPrueba" name="prueba" class="w-full border-2 border-blue-300  bg-white rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
                 <option value="">-- Seleccione una prueba --</option>
                 <?php foreach ($pruebas as $prueba): ?>
                     <option value="<?= htmlspecialchars($prueba, ENT_QUOTES) ?>">        

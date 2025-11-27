@@ -10,6 +10,12 @@
     <title>Estudios Pendientes</title>
     <link rel="stylesheet" href="../../Recursos/css/app.css">
     <style>
+        h1 {
+            
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #226bbeff;
+        }
         table {
             border-collapse: collapse;
             width: 100%;
@@ -21,7 +27,7 @@
             text-align: left;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #4caaafff;
             color: white;
             font-weight: bold;
         }
@@ -56,14 +62,14 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container w-full overflow-x-auto mt-4">
         <h1>Estudios Pendientes de Informe</h1>
         
         <?php
         // Verificar si hay estudios pendientes
         if (isset($arrayResultados) && is_array($arrayResultados) && count($arrayResultados) > 0) {
         ?>
-            <table>
+            <table class="min-w-max w-full border-collapse">
                 <thead>
                     <tr>
                         <th>ID Estudio</th>
@@ -71,7 +77,7 @@
                         <th>Código Prueba</th>
                         <th>Descripción</th>
                         <th>Estado</th>
-                        <th>Informado</th>
+                        <th>Validado</th>
                         <th>Fecha Informe</th>
                         <th>Acciones</th>
                     </tr>
@@ -85,7 +91,7 @@
                         $descripcion = htmlspecialchars($estudio[3]);
                         $resultados = htmlspecialchars($estudio[4]);
                         $informado = htmlspecialchars($estudio[5]);
-                        $f_informado = htmlspecialchars($estudio[6] ?? 'N/A');
+                        $f_informado = htmlspecialchars($estudio[6] ?? '');
                         
                         $status_class = ($resultados === 'Pendiente') ? 'status-pendiente' : 'status-informado';
                         $informado_text = ($informado == 1) ? 'Sí' : 'No';

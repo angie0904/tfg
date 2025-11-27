@@ -1,3 +1,12 @@
+<style>
+    h2 {
+       
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        color: #226bbeff;
+    }
+</style>
+
 <form action="index.php?action=crearModalidades"></form>
 
 <div class="flex items-center justify-center  bg-gray-50">

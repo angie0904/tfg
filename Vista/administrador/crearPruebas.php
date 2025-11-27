@@ -1,3 +1,12 @@
+<style>
+    h2 {
+       
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        color: #226bbeff;
+    }
+</style>
+
 <?php
 $msg = $msg ?? '';
 ?>

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODOS Estudios Pendientes</title>
+    <title>Alta Medicos v2</title>
     <link rel="stylesheet" href="../../Recursos/css/app.css">
     <style>
         h1 {
@@ -63,7 +63,7 @@
 </head>
 <body>
     <div class="container w-full overflow-x-auto mt-4">
-        <h1>Mis Estudios Pendientes de Informe</h1>
+        <h1>Alta Medicos v2</h1>
         
         <?php
         // Verificar si hay estudios pendientes
@@ -78,9 +78,7 @@
                         <th>Código Prueba</th>
                         <th>Descripción</th>
                         <th>Estado</th>
-                        <th>Validado</th>
-                        <th>Fecha Informe</th>
-                        <th>Acciones</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -90,23 +88,15 @@
                         $nhc = htmlspecialchars($estudio[1]);
                         $cod_prueba = htmlspecialchars($estudio[2]);
                         $descripcion = htmlspecialchars($estudio[3]);
-                        $resultados = htmlspecialchars($estudio[4]);
-                        $informado = htmlspecialchars($estudio[5]);
-                        $f_informado = htmlspecialchars($estudio[6] ?? '');
-                        
-                        $status_class = ($resultados === 'Pendiente') ? 'status-pendiente' : 'status-informado';
-                        $informado_text = ($informado == 1) ? 'Sí' : 'No';
                     ?>
                         <tr>
                             <td><?php echo $id_estudio; ?></td>
                             <td><?php echo $nhc; ?></td>
                             <td><?php echo $cod_prueba; ?></td>
                             <td><?php echo $descripcion; ?></td>
-                            <td class="<?php echo $status_class; ?>"><?php echo $resultados; ?></td>
-                            <td><?php echo $informado_text; ?></td>
-                            <td><?php echo $f_informado; ?></td>
+                            
                             <td>
-                                <a href="?action=informe&id=<?php echo urlencode($id_estudio); ?>" class="btn-accion">Crear Informe</a>
+                                <a href="?action=formularioAltaMedicos&id=<?php echo urlencode($id_estudio); ?>" class="btn-accion">Modificar</a>
                             </td>
                         </tr>
                     <?php

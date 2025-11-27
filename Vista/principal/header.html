@@ -1,17 +1,13 @@
 <header id="header">
     <link rel="stylesheet" href="/tfg/Recursos/css/app.css">
     <nav class="navbar navbar-expand-lg bg-gray-200 px-5">
-        <div class="" style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+        <div class="" style="display: flex; gap: 500%; align-items: center;">
             <!-- Logo que lleva al Inicio -->
             <a class="navbar-brand" href="index.php">
                 <span>Control</span>T2
             </a>
           
-            <div class="w-75" id="navbarNavAltMarkup">
-                <div class="navbar-nav" style="display: flex; justify-content: center; flex-direction: row; gap: 10PX;">
-                   
-                </div>
-            </div>
+            
             <div class="navbar-nav">
                 <?php if (session_status() == PHP_SESSION_NONE) { session_start(); } ?>
                 <?php if (!empty($_SESSION['id_usuario'])): ?>

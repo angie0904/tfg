@@ -30,6 +30,8 @@ $showSidebar = !($action === 'inicio' || $action === '' || $action === null);
       <a href="?action=crearPruebas" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">🧪</span>Crear Nuevas Pruebas</a>
       <a href="?action=crearModalidades" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">⚙️</span>Crear Nuevas Modalidades</a>
       <a href="?action=desvalidarInformes" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">✓</span>Desvalidar Informes</a>
+            <a href="?action=altaMedicosv2" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">✓</span>Altas medicos v2</a>
+
     </nav>
   </aside>
   <?php endif; ?>
@@ -52,6 +54,8 @@ $showSidebar = !($action === 'inicio' || $action === '' || $action === null);
               crearModalidades();
           }  elseif ($action === 'desvalidarInformes') {
               desvalidarInformes();
+          }  elseif ($action === 'altaMedicosv2') {
+              altaMedicosv2();
           } elseif ($action === 'inicio' || $action === '' || $action === null) {
               require __DIR__ . '/home.html';
           }
