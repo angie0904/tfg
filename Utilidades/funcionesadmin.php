@@ -214,5 +214,58 @@ function altaMedicosv2()
     } else {
         echo "No se encontraron resultados.";
     }
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificar'])) {
+        $login = trim($_POST['login'] ?? '');
+        $nombre = trim($_POST['nombre'] ?? '');
+        $apellidos = trim($_POST['apellidos'] ?? '');
+      
+        
+        if (!empty($login) && !empty($nombre) && !empty($apellidos)) {
+            $resultado = new admin();
+            $resultado->formularioAltaMedicos($login, $nombre, $apellidos);
+        }
+    }
+}
+
+
+function crearModalidadesv2()
+{
+    $modelPath = __DIR__ . '/../Modelo/class.admin.php';
+    require_once $modelPath;
+    $resul = new admin();
+    if($arrayResultados = $resul->crearModalidadesv2()){
+        
+        require_once(__DIR__.'/../Vista/administrador/crearModalidadesv2.php');
+        require_once(__DIR__.'/../Vista/principal/header.html');
+        
+    // require_once('./Vista/resultados.php');
+    } else {
+        echo "No se encontraron resultados.";
+    }
+
+
+    
+}
+
+
+function crearPruebasv2()
+{
+    $modelPath = __DIR__ . '/../Modelo/class.admin.php';
+    require_once $modelPath;
+    $resul = new admin();
+    if($arrayResultados = $resul->crearPruebasv2()){
+        
+        require_once(__DIR__.'/../Vista/administrador/crearPruebasv2.php');
+        require_once(__DIR__.'/../Vista/principal/header.html');
+        
+    // require_once('./Vista/resultados.php');
+    } else {
+        echo "No se encontraron resultados.";
+    }
+
+
+    
 }
 ?>

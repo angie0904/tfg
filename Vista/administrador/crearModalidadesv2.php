@@ -70,26 +70,24 @@
             <table class="min-w-max w-full border-collapse">
                 <thead>
                     <tr>
-                        <th>Login Medico</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Estado</th>
+                       
+                        <th>Código Prueba</th>
+                        <th>Descripción</th>
+
 
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     foreach ($arrayResultados as $estudio) {
-                        $id_estudio = htmlspecialchars($estudio[0]);
-                        $nhc = htmlspecialchars($estudio[1]);
-                        $cod_prueba = htmlspecialchars($estudio[2]);
-
+                        
+                        $cod_prueba = htmlspecialchars($estudio[0]);
+                        $descripcion = htmlspecialchars($estudio[1]);
                     ?>
                         <tr>
-                            <td><?php echo $id_estudio; ?></td>
-                            <td><?php echo $nhc; ?></td>
+                            
                             <td><?php echo $cod_prueba; ?></td>
-
+                            <td><?php echo $descripcion; ?></td>
                             
                             <td>
                                 <!-- <a href="?action=formularioAltaMedicos&id=<?php echo urlencode($id_estudio); ?>" class="btn-accion">Modificar</a> -->
@@ -120,7 +118,7 @@
 
         <h3 class="text-2xl font-bold text-gray-900 mb-6">Modificar Paciente</h3>
 
-        <form id="formModificar" action="?action=formularioAltaMedicos" method="post" class="space-y-4">
+        <form id="formModificar" action="?action=formularioAltasMedicos" method="post" class="space-y-4">
             <input type="hidden" id="nhc" name="nhc">
             <input type="hidden" name="modificar" value="1">
 

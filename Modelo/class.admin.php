@@ -148,6 +148,45 @@ public function getPacienteByLogin($login)
     return $resultado;
 
 }
+
+
+public function crearModalidadesv2()
+{
+    // Mostramos medicos.
+    $sent = "Select cod_modalidad, descripcion FROM modalidad";
+    $cons = $this->conn->prepare($sent);
+    $cons->execute();    
+    $cons->bind_result($cod_modalidad,$descripcion);
+    $found = array();
+        while($cons->fetch()){
+                array_push($found, [$cod_modalidad,$descripcion]);
+        };
+    
+    
+    
+    $cons->close();
+    return $found;
+}
+
+
+
+public function crearPruebasv2()
+{
+    // Mostramos medicos.
+    $sent = "Select cod_prueba, descripcion,modalidad FROM pruebas";
+    $cons = $this->conn->prepare($sent);
+    $cons->execute();    
+    $cons->bind_result($cod_modalidad,$descripcion,$modalidad);
+    $found = array();
+        while($cons->fetch()){
+                array_push($found, [$cod_modalidad,$descripcion,$modalidad]);
+        };
+    
+    
+    
+    $cons->close();
+    return $found;
+}
 public function altaMedicosv2()
 {
     // Mostramos medicos.
@@ -165,6 +204,24 @@ public function altaMedicosv2()
     $cons->close();
     return $found;
 }
+
+
+public function formularioAltaMedicos($login, $nombre, $apellidos)
+{
+    $sent = "UPDATE medico SET login = ?, nombre = ?, apellidos = ? WHERE login = ?";
+    $cons = $this->conn->prepare($sent);
+    
+    if (!$cons) {
+        return false;
+    }
+    
+    $cons->bind_param("sss", $login,$nombre, $apellidos);
+    $resultado = $cons->execute();
+    
+    $cons->close();
+    return $resultado;
+}
+
 
 
 public function medicosAdmin($nColegiado, $nombre, $apellidos, $login)
