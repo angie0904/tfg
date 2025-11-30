@@ -10,6 +10,9 @@
 <?php
 $msg = $msg ?? '';
 ?>
+<?php if (isset($msg)): ?>
+    <?php echo $msg; ?>
+<?php endif; ?>
 
 <div class="flex items-center justify-center bg-gray-50">
     <form action="index.php?action=crearPruebas" method="POST"
@@ -48,7 +51,4 @@ $msg = $msg ?? '';
         </button>
     </form>
     
-    <?php if (isset($msg)): ?>
-        <?php echo $msg; ?>
-    <?php endif; ?>
 </div>

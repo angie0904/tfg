@@ -9,6 +9,7 @@
 
 <form action="index.php?action=crearModalidades"></form>
 
+<?php if (!empty($msg)) echo $msg; ?>
 <div class="flex items-center justify-center  bg-gray-50">
     <form action="index.php?action=crearModalidades" method="POST"
           class="w-full max-w-lg bg-white p-8 rounded-xl shadow-md border border-gray-200 space-y-6">

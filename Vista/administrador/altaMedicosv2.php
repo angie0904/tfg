@@ -60,10 +60,20 @@
 </head>
 <body>
     <div class="container w-full overflow-x-auto mt-4">
-        <h1>Alta Medicos v2</h1>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+            <h1>Medicos</h1>
+            <div style="margin-left:auto;">
+                <a href="?action=altasMedicos" class="btn-accion" style="background-color:#226bbe; padding:10px 16px; border-radius:6px; text-decoration:none;">+ Dar de Alta</a>
+            </div>
+        </div>
         
         <?php
-        // Verificar si hay estudios pendientes
+        // Mostrar mensaje si existe
+        if (isset($msg) && !empty($msg)) {
+            echo $msg;
+        }
+
+        // Verificar si hay medicos
         if (isset($arrayResultados) && is_array($arrayResultados) && count($arrayResultados) > 0) {
         ?>
         
@@ -73,29 +83,28 @@
                         <th>Login Medico</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
-                        <th>Estado</th>
+                        <th>Acciones</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($arrayResultados as $estudio) {
-                        $id_estudio = htmlspecialchars($estudio[0]);
-                        $nhc = htmlspecialchars($estudio[1]);
-                        $cod_prueba = htmlspecialchars($estudio[2]);
-
+                    foreach ($arrayResultados as $medico) {
+                        $login = htmlspecialchars($medico[0]);
+                        $password = htmlspecialchars($medico[1]);
+                        $nombre = htmlspecialchars($medico[2]);
+                        $apellidos = htmlspecialchars($medico[3]);
                     ?>
                         <tr>
-                            <td><?php echo $id_estudio; ?></td>
-                            <td><?php echo $nhc; ?></td>
-                            <td><?php echo $cod_prueba; ?></td>
-
-                            
+                            <td><?php echo $login; ?></td>
+                            <td><?php echo $nombre; ?></td>
+                            <td><?php echo $apellidos; ?></td>
                             <td>
-                                <!-- <a href="?action=formularioAltaMedicos&id=<?php echo urlencode($id_estudio); ?>" class="btn-accion">Modificar</a> -->
-                                <button type="button" onclick="abrirModalModificar(<?php echo urlencode($id_estudio); ?>)"
+                                <button type="button" 
+                                            onclick="abrirModalModificar(<?php echo htmlspecialchars(json_encode($medico)); ?>)"
                                             class="btn-accion">
-                                        ✏️ Modificar
+                                        ✏️ Modificaaar
+                                </button>
                             </td>
                         </tr>
                     <?php
@@ -118,14 +127,20 @@
             </svg>
         </button>
 
-        <h3 class="text-2xl font-bold text-gray-900 mb-6">Modificar Paciente</h3>
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Modificar Médico</h3>
 
-        <form id="formModificar" action="?action=formularioAltaMedicos" method="post" class="space-y-4">
-            <input type="hidden" id="nhc" name="nhc">
-            <input type="hidden" name="modificar" value="1">
+        <form id="formModificar" action="?action=altaMedicosv2" method="post" class="space-y-4">
+            <input type="hidden" id="original_login" name="original_login">
+            <input type="hidden" name="modificarMedicos" value="1">
 
             <div class="grid grid-cols-2 gap-4">
-                
+                <div>
+                    <label for="login" class="block text-gray-700 font-semibold mb-2">Login</label>
+                    <input id="login" name="login" type="text" 
+                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
                 <div>
                     <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre</label>
                     <input id="nombre" name="nombre" type="text" 
@@ -136,38 +151,6 @@
                 <div>
                     <label for="apellidos" class="block text-gray-700 font-semibold mb-2">Apellidos</label>
                     <input id="apellidos" name="apellidos" type="text" 
-                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                           required>
-                </div>
-
-                <div>
-                    <label for="f_nac" class="block text-gray-700 font-semibold mb-2">Fecha Nacimiento</label>
-                    <input id="f_nac" name="f_nac" type="date" 
-                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                           required>
-                </div>
-
-                <div>
-                    <label for="edad" class="block text-gray-700 font-semibold mb-2">Edad</label>
-                    <input id="edad" name="edad" type="number" 
-                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                           required>
-                </div>
-
-                <div>
-                    <label for="sexo" class="block text-gray-700 font-semibold mb-2">Sexo</label>
-                    <select id="sexo" name="sexo" 
-                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required>
-                        <option value="">Selecciona sexo</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Femenino</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="tlf" class="block text-gray-700 font-semibold mb-2">Teléfono</label>
-                    <input id="tlf" name="tlf" type="text" 
                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                            required>
                 </div>
@@ -188,14 +171,11 @@
 </div>
 
 <script>
-    function abrirModalModificar(paciente) {
-        document.getElementById('nhc').value = paciente[0];
-        document.getElementById('nombre').value = paciente[1];
-        document.getElementById('apellidos').value = paciente[2];
-        document.getElementById('f_nac').value = paciente[3];
-        document.getElementById('edad').value = paciente[4];
-        document.getElementById('sexo').value = paciente[5];
-        document.getElementById('tlf').value = paciente[6];
+    function abrirModalModificar(medico) {
+        document.getElementById('original_login').value = medico[0];
+        document.getElementById('login').value = medico[0];
+        document.getElementById('nombre').value = medico[2];
+        document.getElementById('apellidos').value = medico[3];
         document.getElementById('modalModificar').classList.remove('hidden');
     }
 

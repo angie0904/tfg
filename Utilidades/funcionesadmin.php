@@ -3,6 +3,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// funcion para obtener todos los medicos
 function getMedicos()
 {
     $sent = "SELECT nºColegiado, nombre, apellidos, especialidad FROM medico";
@@ -18,6 +20,7 @@ function getMedicos()
     return $result;
 }
 
+// funcion para crear pruebas
 function crearPruebas()
 {
     // Si es POST, procesar el formulario
@@ -47,6 +50,8 @@ function crearPruebas()
     // Mostrar el formulario
     require_once __DIR__ . '/../Vista/administrador/crearPruebas.php';
 }
+
+// funcion para crear modalidades
 function crearModalidades()
 {
     // Si es POST, procesar el formulario
@@ -76,6 +81,8 @@ function crearModalidades()
     require_once __DIR__ . '/../Vista/administrador/crearModalidades.php';
 }
 
+// funcion para buscar paciente por NHC
+
 function buscarPaciente()
 {
     $modelPath = __DIR__ . '/../Modelo/class.medico.php';
@@ -93,6 +100,7 @@ function buscarPaciente()
     }
 }
 
+// funcion para ver las bajas
 function bajas()
 {
      require_once(__DIR__.'/../Vista/principal/header.html');
@@ -100,12 +108,14 @@ function bajas()
 
 }
 
+// funcion para desvalidar informes
 function desvalidarInformes()
 {
      require_once(__DIR__.'/../Vista/principal/header.html');
     require_once(__DIR__.'/../Vista/administrador/desvalidarInformes.php');
 }
 
+// funcion para dar de alta medicos
 function altaMedicos()
 {
     $modelPath = __DIR__ . '/../Modelo/class.admin.php';
@@ -141,7 +151,7 @@ function altaMedicos()
     require_once(__DIR__.'/../Vista/administrador/altasMedicos.php');
 }
 
-
+// funcion para modificar pacientes
 
 function modificarPacientes()
 {
@@ -168,6 +178,41 @@ function modificarPacientes()
     require_once(__DIR__.'/../Vista/administrador/modificarPacientes.php');
 }
 
+// funcion para modificar medicos
+function modificarMedicos()
+{
+    $modelPath = __DIR__ . '/../Modelo/class.admin.php';
+    require_once $modelPath;
+    
+    $msg = '';
+    
+    // Verificar que sea POST y que existan los datos
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificarMedicos'])) {
+        $original_login = trim($_POST['original_login'] ?? '');
+        $login = trim($_POST['login'] ?? '');
+        $nombre = trim($_POST['nombre'] ?? '');
+        $apellidos = trim($_POST['apellidos'] ?? '');
+        
+        if (empty($original_login) || empty($login) || empty($nombre) || empty($apellidos)) {
+            $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded-lg border border-red-300">Por favor rellena los campos obligatorios.</div>';
+        } else {
+            $resultado = new admin();
+            if ($resultado->formularioAltaMedicos($login, $nombre, $apellidos, $original_login)) {
+                $msg = '<div class="mt-4 p-4 bg-green-100 text-green-700 rounded-lg border border-green-300">Médico modificado correctamente.</div>';
+            } else {
+                $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded-lg border border-red-300">Error al modificar el médico.</div>';
+            }
+        }
+    }
+    
+    // Obtener resultados y mostrar la vista
+    $resul = new admin();
+    $arrayResultados = $resul->altaMedicosv2();
+    
+    require_once(__DIR__.'/../Vista/principal/header.html');
+    require_once(__DIR__.'/../Vista/administrador/altaMedicosv2.php');
+}
+ // Logout function
 function logout()
 {
     if (session_status() == PHP_SESSION_NONE) {
@@ -200,36 +245,44 @@ function logout()
     exit;
 
 }
+// funcion para dar de alta medicos y modificarlos
 function altaMedicosv2()
 {
     $modelPath = __DIR__ . '/../Modelo/class.admin.php';
     require_once $modelPath;
     $resul = new admin();
-    if($arrayResultados = $resul->altaMedicosv2()){
-        
-        require_once(__DIR__.'/../Vista/administrador/altaMedicosv2.php');
-        require_once(__DIR__.'/../Vista/principal/header.html');
-        
-    // require_once('./Vista/resultados.php');
-    } else {
-        echo "No se encontraron resultados.";
-    }
+    $msg = '';
 
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificar'])) {
+    // Procesar el POST si se ha enviado el formulario de modificación
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificarMedicos'])) {
+        $original_login = trim($_POST['original_login'] ?? '');
         $login = trim($_POST['login'] ?? '');
         $nombre = trim($_POST['nombre'] ?? '');
         $apellidos = trim($_POST['apellidos'] ?? '');
-      
-        
-        if (!empty($login) && !empty($nombre) && !empty($apellidos)) {
-            $resultado = new admin();
-            $resultado->formularioAltaMedicos($login, $nombre, $apellidos);
+
+        if (!empty($original_login) && !empty($login) && !empty($nombre) && !empty($apellidos)) {
+            $ok = $resul->formularioAltaMedicos($login, $nombre, $apellidos, $original_login);
+            if ($ok) {
+                $msg = '<div class="mt-4 p-4 bg-green-100 text-green-700 rounded">Datos modificados correctamente.</div>';
+            } else {
+                $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Error al modificar los datos.</div>';
+            }
+        } else {
+            $msg = '<div class="mt-4 p-4 bg-red-100 text-red-700 rounded">Faltan datos para modificar.</div>';
         }
+    }
+
+    // Obtener resultados y mostrar la vista
+    $arrayResultados = $resul->altaMedicosv2();
+    if ($arrayResultados) {
+        require_once(__DIR__.'/../Vista/principal/header.html');
+        require_once(__DIR__.'/../Vista/administrador/altaMedicosv2.php');
+    } else {
+        echo "No se encontraron resultados.";
     }
 }
 
-
+// funcion para crear modalidades
 function crearModalidadesv2()
 {
     $modelPath = __DIR__ . '/../Modelo/class.admin.php';
@@ -249,7 +302,7 @@ function crearModalidadesv2()
     
 }
 
-
+// funcion para crear pruebas
 function crearPruebasv2()
 {
     $modelPath = __DIR__ . '/../Modelo/class.admin.php';

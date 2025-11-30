@@ -8,41 +8,22 @@
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<?php if (isset($err)): ?>
-            <div id="errorModal" class="fixed inset-0  flex items-start justify-center pt-12">
-              
-              <div class=" bg-red-600/40 backdrop-blur-sm rounded-lg shadow-lg w-11/12  text-center">
-                <h3 class="text-xl font-semibold text-red-600 mb-2">Error</h3>
-                <p class="mb-4">Contraseña Incorrecta<br>Vuelve a intentarlo</p>
-                
-                <div class="flex justify-center">
-                  <button id="closeModal" class="px-4 py-2 bg-blue-600 text-white rounded">Cerrar</button>
-                </div>
-              </div>
-            </div>
-            
-            <script>
-            (function(){
-              const modal = document.getElementById('errorModal');
-              const btn = document.getElementById('closeModal');
-              btn.addEventListener('click', () => modal.remove());
-              // cerrar con ESC
-              document.addEventListener('keydown', (e) => { if (e.key === 'Escape') modal.remove(); });
-            })();
-            </script>
-          <?php endif; ?>
-<body>
+
+<body class="min-h-screen relative" style="background-image: url('./Recursos/img/login.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
   
-  <main>
+  <!-- Filtro oscuro -->
+  <div class="absolute inset-0 bg-black opacity-60"></div>
+  
+  <main class="relative z-20 flex items-center justify-center min-h-screen">
     
     
 
-      <h2>El paciente no existe</h2>
+     
       
   
-    <div class="form-container">
+    <div class="form-container bg-url('./Recursos/img/login.jpg') relative z-20 m-auto p-8 rounded shadow-lg w-full max-w-md">
       
-      <h2 style="margin:0 0 1rem 0">Crear usuario</h2>
+      <h2 style="text-2xl text-blue font-bold text-center">Crear usuario</h2>
 
       <form action="index.php?action=crearUsuario" method="post" autocomplete="off" novalidate>
         <div class="field">
@@ -87,7 +68,10 @@
         </div>
         <a href="#login.php" method="post" >
           <div style="margin-top:0.75rem">
-            <button type="submit" action="index.php?action=CrearUsuario">Crear usuario</button>
+            <button type="submit" class="w-full text-white font-semibold py-2 rounded transition duration-200"
+                style="background-color: #1964ab;" 
+                onmouseover="this.style.backgroundColor='#0d3a7d'"
+                onmouseout="this.style.backgroundColor='#1964ab'" action="index.php?action=CrearUsuario">Crear usuario</button>
           </div>
         </a>
         

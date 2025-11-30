@@ -60,7 +60,12 @@
 </head>
 <body>
     <div class="container w-full overflow-x-auto mt-4">
-        <h1>Alta Medicos v2</h1>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+            <h1>Pruebas</h1>
+            <div style="margin-left:auto;">
+                <a href="?action=crearPruebas" class="btn-accion" style="background-color:#226bbe; padding:10px 16px; border-radius:6px; text-decoration:none;">+ Crear Prueba</a>
+            </div>
+        </div>
         
         <?php
         // Verificar si hay estudios pendientes
@@ -73,7 +78,7 @@
                        
                         <th>Código Prueba</th>
                         <th>Descripción</th>
-
+<th>Acciones</th>
 
                     </tr>
                 </thead>
@@ -117,7 +122,7 @@
             </svg>
         </button>
 
-        <h3 class="text-2xl font-bold text-gray-900 mb-6">Modificar Paciente</h3>
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Modificar Pruebas</h3>
 
         <form id="formModificar" action="?action=formularioAltasMedicos" method="post" class="space-y-4">
             <input type="hidden" id="nhc" name="nhc">

@@ -18,6 +18,6 @@ require_once(__DIR__.'/../../Vista/administrador/admin.php');
 if (isset($_REQUEST['action'])) {
     $action = strtolower($_REQUEST['action']);
 /*     echo "preparing to call action: $action"; */
-    $action();
+  
 } 
 ?>

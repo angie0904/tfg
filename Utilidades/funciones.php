@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+// Login function
 function iniciarSesion()
 {
     
@@ -64,9 +65,8 @@ function iniciarSesion()
         } else {
             $err = "";
  
-            require_once(__DIR__.'/../Vista/principal/header.html');
             require_once("./Vista/crearUsuario.php");
-            require_once(__DIR__.'/../Vista/principal/footer.html');
+            
         }
 
     } else {
@@ -77,6 +77,8 @@ function iniciarSesion()
 
 
 }
+
+// Paciente
 
 function listaResul()
 {
@@ -98,6 +100,7 @@ function listaResul()
     }
 }
 
+// FUNCION PARA SOLICITAR PRUEBA-PACIENTE
 function solicitarPrueba()
 {
    
@@ -119,11 +122,12 @@ function solicitarPrueba()
 
 }
 
+// Medico
 function buscarPaciente()
 {
     $modelPath = __DIR__ . '/../Modelo/class.medico.php';
     require_once $modelPath;
-    
+    $nhc = $_POST["nhc"] ?? '';
     $resul = new medico();
     if($arrayResultados = $resul->getPacienteByNHC($nhc)){
         
@@ -132,9 +136,11 @@ function buscarPaciente()
         
     // require_once('./Vista/resultados.php');
     } else {
-        echo "No se encontraron resultados.";
+        require_once(__DIR__.'/../Vista/medico/busqueda.php');
     }
 }
+
+// funcion para ver los estudios pendientes de un paciente por su nhc
 function EstudiosPedientes()
 {
     $modelPath = __DIR__ . '/../Modelo/class.medico.php';
@@ -152,6 +158,7 @@ function EstudiosPedientes()
     }
 }
 
+// Crear usuario
 function crearUsuario(){
  $modelPath = __DIR__ . '/../Modelo/usuarios.php';
  $modelPath2 = __DIR__ . '/../Modelo/class.paciente.php';
@@ -169,7 +176,7 @@ function crearUsuario(){
         $_POST["login"])) {
                     
             require_once(__DIR__.'/../Vista/login.php');
-            require_once(__DIR__.'/../Vista/principal/header.html');
+            
         } else {
             echo "<p style='color:red'>Error al insertar paciente</p>";
         }
@@ -181,6 +188,8 @@ function crearUsuario(){
     
 }
 
+
+// FUNCION PARA INSERTAR PRUEBA
 function insertarPrueba()
 {
     $modelPath = __DIR__ . '/../Modelo/class.paciente.php';
@@ -203,6 +212,8 @@ function insertarPrueba()
 
 }
 
+// Medico
+
 function misEstudiosPendientes()
 {
     $modelPath = __DIR__ . '/../Modelo/class.medico.php';
@@ -219,6 +230,8 @@ function misEstudiosPendientes()
         echo "No se encontraron resultados.";
     }
 }
+
+// funcion para ver todos los estudios pendientes
 function estudiosPendientes()
 {
     $modelPath = __DIR__ . '/../Modelo/class.medico.php';
@@ -235,6 +248,8 @@ function estudiosPendientes()
         echo "No se encontraron resultados.";
     }
 }
+
+// funcion para ver el informe de un estudio
 function getInforme()
 {
     $modelPath = __DIR__ . '/../Modelo/class.medico.php';
@@ -251,6 +266,8 @@ function getInforme()
         echo "No se encontraron resultados.";
     }
 }
+
+// funcion para guardar el informe de un estudio
 function guardarInforme(){
     // Procesa el formulario enviado desde Vista/medico/informe.php
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -307,6 +324,8 @@ function guardarInforme(){
 
 
 }
+
+// funcion para validar el informe de un estudio
 function validarInforme()
 {
     // Procesa el formulario enviado desde Vista/medico/informe.php
@@ -423,9 +442,7 @@ function desvalidarInformes()
 }
 
 
-?>
- 
-<?php
+// Logout function
 function logout()
 {
     if (session_status() == PHP_SESSION_NONE) {

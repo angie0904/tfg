@@ -11,7 +11,7 @@ class paciente
         $this->conn = $this->db->getConn();
     }
 
-
+// OBTENER LISTA DE RESULTADOS DEL PACIENTE
     public function getResultados()
     {
         $sent = "select d.descripcion,c.resultados,a.NHC,b.nombre as nombrePaciente,b.apellidos as apellidosPaciente,e.apellidos as apellidosMedico 
@@ -32,6 +32,8 @@ class paciente
         $cons->close();
         return $result;
     }
+
+    // FUNCION PARA CREAR PACIENTE
     public function crearPaciente($nombre, $apellidos, $fechaNacimiento, $edad, $sexo, $telefono, $login)
     {
         $consulta = "INSERT INTO pacientes (Nombre, Apellidos, f_nac, edad, sexo, tlf, login) VALUES (?,?,?,?,?,?,?)";
@@ -47,6 +49,7 @@ class paciente
         return $bool;
     }
 
+    // FUNCION PARA SOLICITAR PRUEBA
     public function solicitarPrueba()
     {
         $consulta = "SELECT descripcion FROM pruebas";
@@ -64,6 +67,7 @@ class paciente
         return $pruebas;
     }
 
+    // FUNCION PARA INSERTAR PRUEBA
     public function insertarPrueba($prueba,$login)
     {
 
@@ -80,6 +84,7 @@ class paciente
         return $bool;
     }
 
+    // FUNCION PARA BUSCAR COD_PRUEBA Y NHC
     function buscarPrueba($prueba){
                 // extraigo el cod_prueba
         $consultapre = "select cod_prueba from pruebas where descripcion = ?";
@@ -95,6 +100,7 @@ class paciente
         
         return $cod_prueba_val;
     }
+    // FUNCION PARA BUSCAR NHC DEL PACIENTE
     function buscarPaciente($login){
  
         //extraigo el NHC del paciente
@@ -113,6 +119,8 @@ class paciente
         
 
     }
+
+    // FUNCION PARA INSERTAR PRUEBA
     function test($login,$prueba){
 
         $consulta = "INSERT INTO estudios (cod_prueba, NHC) VALUES (?, ?)";

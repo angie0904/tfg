@@ -26,13 +26,10 @@ $showSidebar = !($action === 'inicio' || $action === '' || $action === null);
     <nav class="space-y-2">
       <a href="?action=bajas" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"> <span class="inline-block mr-2">📋</span>Bajas</a>
       <a href="?action=modificarPacientes" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">👥</span>Modificar Pacientes</a>
-      <a href="?action=altasMedicos" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">👨‍⚕️</span>Altas Medicos</a>
-      <a href="?action=crearPruebas" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">🧪</span>Crear Nuevas Pruebas</a>
-      <a href="?action=crearModalidades" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">⚙️</span>Crear Nuevas Modalidades</a>
       <a href="?action=desvalidarInformes" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">✓</span>Desvalidar Informes</a>
-            <a href="?action=altaMedicosv2" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">✓</span>Altas medicos v2</a>
-            <a href="?action=crearModalidadesv2" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">✓</span> Crear Modalidades v2</a>
-                        <a href="?action=crearPruebasv2" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">✓</span> Crear Pruebas v2</a>
+            <a href="?action=altaMedicosv2" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">👨‍⚕️</span>Medicos</a>
+            <a href="?action=crearModalidadesv2" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">⚙️</span>Modalidades</a>
+                        <a href="?action=crearPruebasv2" class="block px-3 py-2 rounded-md bg-gray-300 hover:bg-blue-100 text-black text-decoration-none transition"><span class="inline-block mr-2">🧪</span>Pruebas</a>
 
     </nav>
   </aside>

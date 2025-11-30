@@ -9,7 +9,7 @@ class medico{
             $this->conn = $this->db->getConn();
         }
 
-        
+    //OBTENER LISTA DE PACIENTES    
         public function getPacientes(){
         
         // SELECT * FROM `resultados` WHERE login_pa = 11223344 and Validado = 1;
@@ -25,6 +25,7 @@ class medico{
             return $result;
     }
 
+    // OBTENER PACIENTE POR NHC
     public function getPacienteByNHC($nhc){
         $sent = "select b.NHC,b.nombre, b.apellidos, b.f_nac,b.login,c.descripcion,
                     case when d.resultados is null then 'Pendiente'
@@ -67,7 +68,7 @@ select b.NHC,b.nombre, b.apellidos, b.f_nac,b.login,c.descripcion,
         return $found;
     }
 
-
+// OBTENER LISTA DE RESULTADOS
     public function getResultados(){
         
         // SELECT * FROM `resultados` WHERE login_pa = 11223344 and Validado = 1;
@@ -164,6 +165,8 @@ select b.NHC,b.nombre, b.apellidos, b.f_nac,b.login,c.descripcion,
         return $bool;
         
         }
+
+        // funcion para actualizar un estudio ya existente sin validar.
        function actualizarEstudioInformeSinValidar($id_informe,$num_colegiado,$id_estudio){//nhc sera el id del estudio - añadir f_modi
         $consulta = "update estudios set id_informe = ?, informado = 0, f_ultimaActu = now()
         ,f_realizado = now(),realizado=1,num_colegiado = ?
@@ -180,6 +183,8 @@ select b.NHC,b.nombre, b.apellidos, b.f_nac,b.login,c.descripcion,
     
    
     }
+
+    // funcion para buscar el num_colegiado de un medico a partir de su login
     function buscarMedico($login){
         $consulta = "select num_colegiado from medico where login = ?";
         $sentencia = $this->conn->prepare($consulta);
@@ -195,6 +200,7 @@ select b.NHC,b.nombre, b.apellidos, b.f_nac,b.login,c.descripcion,
         return $result;
 
     }
+    // funcion para obtener los estudios pendientes de un medico
     function misEstudiosPendientes($login){
         $sent = "SELECT a.id_estudio, a.NHC, a.cod_prueba, c.descripcion,
                     case when d.resultados is null then 'Pendiente'
@@ -216,6 +222,7 @@ select b.NHC,b.nombre, b.apellidos, b.f_nac,b.login,c.descripcion,
             $cons->close();
             return $result;
     }
+    // funcion para obtener todos los estudios pendientes
     function estudiosPendientes(){
         $sent = "SELECT a.id_estudio, a.NHC, a.cod_prueba, c.descripcion,
                     case when d.resultados is null then 'Pendiente'
@@ -238,6 +245,7 @@ select b.NHC,b.nombre, b.apellidos, b.f_nac,b.login,c.descripcion,
             return $result;
     }
 
+    // funcion para obtener el informe de un estudio por su id_estudio
     function getInforme($id_estudio){
         $sent = "select b.NHC, b.nombre,b.apellidos,b.f_nac,c.descripcion,d.resultados,
                 a.id_informe

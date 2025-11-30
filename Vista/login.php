@@ -50,6 +50,13 @@
                 Iniciar Sesión
             </button>
 
+            <button type="submit"  action="./crearUsuario.php" name="fini"
+                class="w-full text-white font-semibold py-2 rounded transition duration-200"
+                style="background-color: #1964ab;" 
+                onmouseover="this.style.backgroundColor='#0d3a7d'"
+                onmouseout="this.style.backgroundColor='#1964ab'">
+Registrar            </button>
+
            <?php if (isset($err)) : ?>
                 <p class="text-red-500 text-sm text-center"><?php echo $err; ?></p>
             <?php endif; ?>

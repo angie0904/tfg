@@ -1,12 +1,13 @@
 <header id="header">
     <link rel="stylesheet" href="/tfg/Recursos/css/app.css">
     <nav class="navbar navbar-expand-lg bg-gray-200 px-5">
-        <div class="" style="display: flex; gap: 500%; align-items: center;">
+        <div class="container-fluid d-flex justify-content-between">
+        <div class="" style="display: flex; align-items: center;">
             <!-- Logo que lleva al Inicio -->
             <a class="navbar-brand" href="index.php">
                 <span>Control</span>T2
             </a>
-          
+          </div>
             
             <div class="navbar-nav">
                 <?php if (session_status() == PHP_SESSION_NONE) { session_start(); } ?>
